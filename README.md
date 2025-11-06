@@ -144,6 +144,7 @@ Levantamento_de_Requisitos:
 ## Como rodar o projeto localmente
 
 Seguindo boas práticas para projetos Django colaborativos (usando venv e requirements.txt):
+
 Siga as instruções abaixo para configurar e executar o projeto no seu ambiente local.
 1) Verificando instalação, no bash:
    ```
