@@ -159,6 +159,7 @@ Siga as instruções abaixo para configurar e executar o projeto no seu ambiente
    cd EinsteinCoding-Site2025
    ```
 3) Criar e ativar o ambiente virtual (isolado para o projeto):
+   
    macOS/ Linux:
      ```
      python3 -m venv venv
@@ -170,22 +171,22 @@ Siga as instruções abaixo para configurar e executar o projeto no seu ambiente
      venv\Scripts\activate
      ```
    * Após ativar o ambiente virtual, você verá (venv) antes do seu usuário no         terminal.
-4) Instalar as dependências com o ambiente virtual ativo:
+5) Instalar as dependências com o ambiente virtual ativo:
    ```
    pip install -r requirements.txt
    ```
-5) Configurar variáveis de ambiente (crie um arquivo .env na raiz do projeto para guardar informações sensíveis relacionadas com a conexão com o banco de dados após o banco estar conectado):
+6) Configurar variáveis de ambiente (crie um arquivo .env na raiz do projeto para guardar informações sensíveis relacionadas com a conexão com o banco de dados após o banco estar conectado):
    ```
    SECRET_KEY=coloque_sua_chave_aqui
    DEBUG=True
    DATABASE_URL=postgres://usuario:senha@localhost:5432/einstein_coding
    ```
-6) Executar as migrações do banco após configurado: 
+7) Executar as migrações do banco após configurado: 
    ```
    python manage.py makemigrations
    python manage.py migrate
    ```
-7) Rodar o servidor local e iniciar o servidor de desenvolvimento Django:
+8) Rodar o servidor local e iniciar o servidor de desenvolvimento Django:
    ```
    python manage.py runserver
    ```
@@ -195,7 +196,7 @@ Siga as instruções abaixo para configurar e executar o projeto no seu ambiente
      Quit the server with CONTROL-C.
      ```
      Acesse o site no navegador
-8) Desativar o ambiente virtual ao encerrar o trabalho:
+9) Desativar o ambiente virtual ao encerrar o trabalho:
    ```
    deactivate
    ```
