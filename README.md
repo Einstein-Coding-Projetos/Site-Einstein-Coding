@@ -231,7 +231,7 @@ Siga as instruções abaixo para configurar e executar o projeto no seu ambiente
   ```
 - Abra um Pull Request (PR) no GitHub
   1) Vá até o repositório
-  2) Clique em "Compare & pull request"
+  2) Clique em "Pull requests & new"
   3) Adicione um título claro e uma descrição breve do que foi feito
   4) Clique em "Create Pull Request"
   O Scrum Master ou outro membro revisará o PR antes da integração com a branch principal
