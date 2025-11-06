@@ -214,6 +214,7 @@ Siga as instruções abaixo para configurar e executar o projeto no seu ambiente
     git checkout -b feature/nome-da-feature
     ```
 - Faça suas alterações
+  
   Edite, crie ou modifique os arquivos necessários. É possível testar localmente rodando:
   ```
   python manage.py runserver
