@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Projetos | Healthtech Junior Einstein</title>
+
+    <!-- Mesmas fontes da Home -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- MESMO CSS DA HOME -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR (igual à Home) -->
+<header class="navbar">
+    <nav class="navbar-links left">
+        <a href="/codigo-social/">Código Social</a>
+        <a href="{% url 'home' %}">Healthtech Junior Einstein</a>
+    </nav>
+
+    <div class="navbar-center">
+        <a href="#top" class="brand">NOSSOS<br>PROJETOS</a>
+    </div>
+
+    <nav class="navbar-links right">
+        <a href="/noticias/">Notícias</a>
+        <a href="/gestao/">Gestão</a>
+        <a href="/loja/">Loja</a>
+    </nav>
+</header>
+
+<!-- PROJETOS -->
+<section class="latest-news">
+    <h2>Projetos desenvolvidos por nossa equipe</h2>
+
+    <div class="news-grid">
+        {% for project in projects %}
+            <div class="news-card">
+
+                {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                {% endif %}
+
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.summary }}</p>
+
+                {% if project.link %}
+                    <a href="{{ project.link }}" target="_blank" class="read-more">
+                        Ver projeto
+                    </a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Nenhum projeto cadastrado no momento.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- FOOTER (IGUAL À HOME) -->
+<footer class="footer">
+    <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
+
+    <div class="social-links">
+        <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank">
+            <img src="{% static 'imgs/instagram.svg' %}" alt="Instagram">
+        </a>
+
+        <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank">
+            <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
+        </a>
+    </div>
+
+    <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP</p>
+    <p>Email: einstein.coding@outlook.com</p>
+</footer>
+
+</body>
+</html>

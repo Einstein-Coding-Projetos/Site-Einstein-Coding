@@ -1,0 +1,191 @@
+/* Página gestão */
+.gestao-page{
+  padding: 10px 60px 90px;
+}
+
+.gestao-container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho (título + métricas) */
+.gestao-header{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 30px;
+  align-items: start;
+}
+
+.gestao-title{
+  font-family: "Teko", sans-serif;
+  font-size: 86px;
+  line-height: .9;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin: 10px 0 0;
+}
+
+/* Métricas */
+.metrics{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.metric{
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: #4b57e6; 
+}
+
+.metric .num{
+  font-family: "Teko", sans-serif;
+  font-size: 70px;
+  line-height: 1;
+  color: #4b57e6;
+}
+
+.metric .txt{
+  font-family: "Rajdhani", sans-serif; 
+  font-size: 30px;
+  color: #4b57e6;
+  opacity: .9;
+}
+
+/* organograma */
+.org-chart{
+  position: relative;
+  margin: 40px auto 0;
+  width: min(1100px, 100%);
+  aspect-ratio: 1200 / 800;
+}
+
+/* Linhas no fundo */
+.org-lines{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Pessoa/caixa */
+.person{
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+.avatar{
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #fff;
+  box-shadow: 0 8px 22px rgba(0,0,0,.10);
+  margin-bottom: -24px;
+  background: #ddd;
+}
+
+.card{
+  width: 220px;
+  background: #1f2bbd;
+  color: #fff;
+  border-radius: 18px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 12px 26px rgba(31,43,189,.25);
+  text-align: center;
+}
+
+.name{
+  font-family: "Teko", sans-serif;
+  font-size: 28px;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role{
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin: 6px 0 2px;
+  opacity: .95;
+  text-transform: uppercase;
+}
+
+.phone{
+  font-family: "Rajdhani", sans-serif;
+  font-size: 14px;
+  margin: 0;
+  opacity: .95;
+}
+
+/* Membros */
+.members{
+  background: #4f5ae6;
+  color: #fff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 13px;
+  line-height: 1.35;
+  box-shadow: 0 12px 26px rgba(31,43,189,.18);
+  margin-top: 4px;
+}
+
+.members.small{ width: 200px; text-align: center; }
+.members.tall{ width: 240px; text-align: center; }
+.members.wide{ width: 340px; text-align: left; }
+
+/* Base: posição vem de variáveis */
+.person{
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+/* Defaults por pessoa (mantém como está hoje) */
+.p-presidente{ --x: 50%; --y: 7%; }
+.p-vice{      --x: 74%; --y: 23%; }
+
+.p-dir1{      --x: 4%;  --y: 63%; }
+.p-dir2{      --x: 27%; --y: 63%; }
+.p-dir3{      --x: 50%; --y: 69.5%; }
+.p-dir4{      --x: 73%; --y: 56.8%; }
+.p-dir5{      --x: 96%; --y: 86.5%; }
+
+
+/* Responsivo */
+@media (max-width: 1100px){
+  .gestao-page{ padding: 60px 20px 80px; }
+
+  .gestao-header{
+    grid-template-columns: 1fr;
+  }
+
+  .gestao-title{
+    font-size: 64px;
+  }
+
+  .metric .txt{ font-size: 22px; }
+}

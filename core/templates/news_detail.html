@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ news.title }} | Notícias HJE</title>
+
+    <!-- Fonte Teko -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        body {
+            font-family: 'Teko', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #8fb3ff, #c9a7ff);
+            min-height: 100vh;
+        }
+
+        .news-detail-wrapper {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 48px 56px;
+
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .news-detail-title {
+            font-size: 52px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .news-detail-date {
+            font-size: 20px;
+            opacity: 0.75;
+            margin-bottom: 32px;
+        }
+
+        .news-detail-image {
+            width: 100%;
+            max-height: 420px;
+            object-fit: contain;      
+            display: block;
+            margin: 0 auto 32px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08); 
+            padding: 12px;
+        }
+        
+        .news-detail-content {
+            font-size: 22px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* BOTÕES */
+        .news-detail-actions {
+            margin-top: 48px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .news-detail-back {
+            display: inline-block;
+            padding: 12px 26px;
+
+            font-size: 22px;
+            letter-spacing: 1px;
+
+            color: #000;
+            text-decoration: none;
+
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+
+            transition: all 0.25s ease;
+        }
+
+        .news-detail-back:hover {
+            background: rgba(255, 255, 255, 0.55);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .news-detail-wrapper {
+                margin: 40px 16px;
+                padding: 32px 24px;
+            }
+
+            .news-detail-title {
+                font-size: 40px;
+            }
+
+            .news-detail-content {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="news-detail-wrapper">
+
+        <h1 class="news-detail-title">{{ news.title }}</h1>
+
+        {% if news.created_at %}
+            <div class="news-detail-date">
+                Publicado em {{ news.created_at|date:"d/m/Y" }}
+            </div>
+        {% endif %}
+
+        {% if news.image %}
+            <img 
+                src="{{ news.image.url }}" 
+                alt="{{ news.title }}" 
+                class="news-detail-image"
+            >
+        {% endif %}
+
+        <div class="news-detail-content">
+            {{ news.content|linebreaks }}
+        </div>
+
+        <!-- AÇÕES -->
+        <div class="news-detail-actions">
+            <a href="{% url 'noticias' %}" class="news-detail-back">
+                ← Voltar para Notícias
+            </a>
+
+            <a href="{% url 'home' %}" class="news-detail-back">
+                ⌂ Voltar para Home
+            </a>
+        </div>
+
+    </main>
+
+</body>
+</html>
+
+{% if news.external_link %}
+    <div class="news-links">
+        <a href="{{ news.external_link }}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="news-external-link">
+            🔗 Acessar link relacionado
+        </a>
+    </div>
+{% endif %}

@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Notícias | Healthtech Junior Einstein</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/noticias.css' %}">
+</head>
+
+<body>
+
+
+    <header class="navbar">
+        <nav class="navbar-links left">
+            <a href="/codigo-social/">Código Social</a>
+            <a href="{% url 'home' %}">Healthtech Junior Einstein</a>
+        </nav>
+
+        <div class="navbar-center">
+            <a href="#top" class="brand">NOTÍCIAS<br>HJE</a>
+        </div>
+
+        <nav class="navbar-links right">
+            <a href="/projetos/">Nossos Projetos</a>
+            <a href="/gestao/">Gestão</a>
+            <a href="/loja/">Loja</a>
+        </nav>
+    </header>
+
+    <section class="noticias-header">
+        <h2>Notícias</h2>
+        <p>Fique por dentro das novidades da Healthtech Junior Einstein</p>
+    
+        <form method="get" class="noticias-filtro">
+            <input 
+                type="text" 
+                name="q" 
+                placeholder="Buscar por palavra-chave..."
+                value="{{ request.GET.q }}"
+            >
+    
+            <select name="order">
+                <option value="">Ordenar por</option>
+                <option value="recentes" {% if request.GET.order == 'recentes' %}selected{% endif %}>
+                    Mais recentes
+                </option>
+                <option value="antigas" {% if request.GET.order == 'antigas' %}selected{% endif %}>
+                    Mais antigas
+                </option>
+            </select>
+    
+            <button type="submit">Filtrar</button>
+        </form>
+    </section>
+    
+    
+        <!-- LISTA -->
+        <div class="noticias-container">
+            <div class="lista-noticias">
+                {% for item in noticias %}
+                    <a href="{% url 'news_detail' item.id %}" class="card-noticia">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}">
+                        {% endif %}
+                        <div>
+                            <span class="tag">NOTÍCIA</span>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.content|truncatewords:14 }}</p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p>Nenhuma notícia encontrada.</p>
+                {% endfor %}
+            </div>
+        </div>
+    
+    </section>
+    
+
+    <footer class="footer">
+        <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
+    
+        <div class="social-links">
+            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank" aria-label="Instagram">
+                <img src="{% static 'imgs/instagram.svg' %}" alt="Instagram">
+            </a>
+    
+            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
+                <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
+            </a>
+        </div>
+
+        <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
+            <p>Email: einstein.coding@outlook.com</p>
+    </footer>    
+
+</body>
+</html>

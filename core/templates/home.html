@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Healthtech Junior Einstein</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav class="navbar-links left">
+            <a href="/codigo-social/">Código Social</a>
+            <a href="#sobre-nos">Sobre nós</a>
+            <a href="/projetos/">Nossos Projetos</a>
+        </nav>
+    
+        <div class="navbar-center">
+            <a href="#top" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a>
+        </div>
+    
+        <nav class="navbar-links right">
+            <a href="/noticias/">Notícias</a>
+            <a href="/gestao/">Gestão</a>
+            <a href="/loja/">Loja</a>
+        </nav>
+    </header>
+    
+
+    <section id="top" class="hero">
+        <h1>Healthtech Junior Einstein</h1>
+        <p>Onde o código encontra o cuidado</p>
+    </section>
+
+    <section id="sobre-nos" class="about">
+        <h2>Sobre Nós</h2>
+
+        <p class="intro-text">
+            A Healthtech Junior Einstein é uma entidade estudantil criada por alunos da Engenharia 
+            Biomédica da FICSAE. Nos dedicamos ao desenvolvimento
+            de soluções tecnológicas e de programação aplicadas à área da saúde,
+            unindo inovação, impacto social e aprendizado contínuo.
+            Somos uma comunidade que acredita no poder do código para transformar realidades.
+        </p>
+
+        <div class="about-columns">
+            <div>
+                <div class="about-title">
+                    <h3>Missão</h3>
+                    <img src="{% static 'imgs/missao.png' %}" alt="Missão">
+                </div>
+                <p>Nossa missão é transformar vidas por meio da programação.</p>
+                <p>Trabalhamos em duas frentes:</p>
+                <p>1. Healthtech Junior Einstein: Espaço de prática e aprendizado de programação avançada;</p>
+                <p>2. Código Social: projeto voluntário que oferece aulas de programação para jovens 
+                    em situação de vulnerabilidade.</p>
+                <p>Transformamos realidades por meio de código que gera impacto social!</p>
+            </div>
+
+            <div>
+                <div class="about-title">
+                    <h3>Visão</h3>
+                    <img src="{% static 'imgs/visao.png' %}" alt="Visão">
+                </div>
+                <p>
+                    Ser referência em desenvolvimento tecnológico estudantil voltado à saúde,
+                    formando profissionais capacitados e comprometidos com a sociedade.
+                </p>
+            </div>
+
+            <div>
+                <div class="about-title">
+                    <h3>Valores</h3>
+                    <img src="{% static 'imgs/valores.png' %}" alt="Valores">
+                </div>
+                <ul>
+                    <li>Inovação</li>
+                    <li>Impacto social</li>
+                    <li>Colaboração</li>
+                    <li>Ética</li>
+                    <li>Aprendizado contínuo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="breaking-news">
+        <div class="breaking-title">
+            <img src="{% static 'imgs/breakingnews.png' %}" alt="Breaking News">
+        </div>
+        
+
+        <div class="news-grid">
+            {% for news in featured_news %}
+                <div class="news-card">
+                    {% if news.image %}
+                        <img src="{{ news.image.url }}" alt="{{ news.title }}">
+                    {% endif %}
+
+                    <h3>{{ news.title }}</h3>
+                    <p>{{ news.summary }}</p>
+
+                    <a href="/noticias/{{ news.id }}/" class="read-more">
+                        Ler mais
+                    </a>
+                </div>
+            {% empty %}
+                <p>Nenhuma notícia em destaque no momento.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="outras-noticias" class="breaking-news outras-noticias">
+        <div class="outras-noticias-content">
+            <h2>Outras notícias</h2>
+    
+            <p class="intro-text">
+                Para visualizar todas as notícias publicadas, siga para a seção 
+                <a href="/noticias/" class="link-destaque">Notícias</a>.
+            </p>
+        </div>
+    </section>  
+
+    <section id="como-contribuir" class="contribuicao" style="padding-top: 0;">
+        <div class="contribuicao-columns" style="grid-template-columns: 1fr;">
+            <div>
+                <h2>Contribuição</h2>
+                <p>Faça parte de uma das equipes de desenvolvimento de projetos para aprendizado de 
+                    programação mão na massa ou demonstre seu interesse em assumir um cargo para o 
+                    desenvolvimento e maturação do projeto como um todo nas áreas de Marketing ou RH! 
+                    Exclusivo para alunos do curso de Engenharia Biomédica da FICSAE.
+                    Link de inscrição aberto somente durante os períodos de seleção.</p>
+            </div>
+        </div>
+    </section>  
+
+    <section class="codigo-social-cards">
+        <div class="cards-grid">
+            {% for card in healthcare_cards %}
+                <div class="card">
+    
+                    <h3>{{ card.title }}</h3>
+                    <p>{{ card.description }}</p>
+    
+                    {% if card.status == 'aberto' and card.form_link %}
+                        <a href="{{ card.form_link }}" target="_blank" class="btn">
+                            Inscreva-se
+                        </a>
+                    {% else %}
+                        <p class="status">
+                            Próxima abertura: {{ card.opening_date }}
+                        </p>
+                    {% endif %}
+    
+                </div>
+            {% empty %}
+                <p>Nenhum processo seletivo disponível no momento.</p>
+            {% endfor %}
+        </div>
+    </section>
+     
+       
+
+    <footer class="footer">
+        <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
+    
+        <div class="social-links">
+            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank" aria-label="Instagram">
+                <img src="{% static 'imgs/instagram.svg' %}" alt="Instagram">
+            </a>
+    
+            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
+                <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
+            </a>
+        </div>
+
+        <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
+            <p>Email: einstein.coding@outlook.com</p>
+    </footer>    
+    
+</body>
+</html>

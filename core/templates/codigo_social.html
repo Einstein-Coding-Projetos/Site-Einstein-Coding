@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Código Social | Healthtech Junior Einstein</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url("{% static 'imgs/fundocs.png' %}") !important;
+        background-size: cover !important;
+        background-attachment: fixed !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        
+    }
+
+    .navbar {
+        background-image: none !important;
+        background-color: transparent !important;
+    }
+
+    .heart-icon {
+        width: 300px;
+        height: auto;
+        margin: 20px 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <nav class="navbar-links left">
+            <a href="{% url 'home' %}">Healthtech Junior Einstein</a>
+        </nav>
+    
+        <div class="navbar-center">
+            <div class="brand" style="cursor: default;">CÓDIGO<br>SOCIAL</div>
+        </div>
+    
+        <nav class="navbar-links right">
+            <a href="#sobre-projeto">Sobre</a>
+            <a href="#como-contribuir">Como contribuir</a>
+        </nav>
+    </header>
+    
+
+    <section class="hero" style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <img src="{% static 'imgs/coracao.png' %}" alt="Coração" class="heart-icon">
+        <p style="font-size: 28px; font-weight: 500; text-transform: none;">Transformando o mundo, um código por vez</p>
+    </section>
+
+    <section id="sobre-projeto" class="about">
+        <h2>Sobre o Projeto</h2>
+        <p class="intro-text">
+            É o braço social da Healthtech Junior Einstein, voltado ao ensino de programação 
+            para pessoas em situação de vulnerabilidade, com o objetivo de promover inclusão e gerar 
+            novas oportunidades profissionais. 
+        </p>
+
+        <div class="about-columns">
+            <div>
+                <div class="about-title">
+                    <h3>Missão</h3>
+                    <img src="{% static 'imgs/missao.png' %}" alt="Missão">
+                </div>
+                <p>Oferecer educação tecnológica de qualidade para quem mais precisa, 
+                reduzindo o abismo digital na nossa sociedade. Em uma parceria com o Ensino EINSTEIN, 
+                serão ministradas aulas de programação para alunos do ensino médio técnico (ETIM) 
+                da instituição.</p>
+            </div>
+
+            <div>
+                <div class="about-title">
+                    <h3>Visão</h3>
+                    <img src="{% static 'imgs/visao.png' %}" alt="Visão">
+                </div>
+                <p>Ser um projeto modelo de ensino voluntário de programação, 
+                formando jovens capazes de criar suas próprias soluções.</p>
+            </div>
+
+            <div>
+                <div class="about-title">
+                    <h3>Valores</h3>
+                    <img src="{% static 'imgs/valores.png' %}" alt="Valores">
+                </div>
+                <ul>
+                    <li>Empatia</li>
+                    <li>Inclusão</li>
+                    <li>Educação</li>
+                    <li>Voluntariado</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-contribuir" class="contribuicao" style="padding-top: 0;">
+        <div class="contribuicao-columns" style="grid-template-columns: 1fr;">
+            <div>
+                <h2>Contribuição</h2>
+                <p>Seja um professor! Exclusivo para alunos da FICSAE.
+                   Link de inscrição aberto somente durante os períodos de seleção.</p>
+            </div>
+        </div>
+        <div class="cards-grid">
+            {% for card in cards %}
+                <div class="card">
+    
+                    <h3>{{ card.title }}</h3>
+                    <p>{{ card.description }}</p>
+    
+                    {% if card.status == 'aberto' and card.form_link %}
+                        <a href="{{ card.form_link }}" target="_blank" class="btn">
+                            Inscreva-se
+                        </a>
+                    {% else %}
+                        <p class="status">
+                            Próxima abertura: {{ card.opening_date }}
+                        </p>
+                    {% endif %}
+    
+                </div>
+            {% empty %}
+                <p>Nenhum processo seletivo disponível no momento.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/company/einsteincoding/" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
+        </div>
+        <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
+            <p>Email: einstein.coding@outlook.com</p>
+    </footer>    
+
+</body>
+</html>
