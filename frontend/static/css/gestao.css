@@ -75,8 +75,8 @@
 /* Pessoa/caixa */
 .person{
   position: absolute;
-  left: 0;
-  top: 0;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -85,6 +85,7 @@
   z-index: 2;
 }
 
+/* --- CORREÇÃO 1: FOTO POR CIMA DO CARD --- */
 .avatar{
   width: 78px;
   height: 78px;
@@ -94,6 +95,10 @@
   box-shadow: 0 8px 22px rgba(0,0,0,.10);
   margin-bottom: -24px;
   background: #ddd;
+  
+  /* Força a foto a ficar numa camada superior */
+  position: relative; 
+  z-index: 10; 
 }
 
 .card{
@@ -104,6 +109,10 @@
   padding: 18px 18px 14px;
   box-shadow: 0 12px 26px rgba(31,43,189,.25);
   text-align: center;
+
+  /* Card fica numa camada inferior à foto */
+  position: relative;
+  z-index: 5;
 }
 
 .name{
@@ -151,20 +160,7 @@
 .members.tall{ width: 240px; text-align: center; }
 .members.wide{ width: 340px; text-align: left; }
 
-/* Base: posição vem de variáveis */
-.person{
-  position: absolute;
-  left: var(--x, 50%);
-  top: var(--y, 50%);
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  z-index: 2;
-}
-
-/* Defaults por pessoa (mantém como está hoje) */
+/* Defaults por pessoa (posições Desktop) */
 .p-presidente{ --x: 50%; --y: 7%; }
 .p-vice{      --x: 74%; --y: 23%; }
 
@@ -175,17 +171,98 @@
 .p-dir5{      --x: 96%; --y: 86.5%; }
 
 
-/* Responsivo */
+/* --- CORREÇÃO 2: ADAPTAÇÃO MOBILE ROBUSTA --- */
 @media (max-width: 1100px){
   .gestao-page{ padding: 60px 20px 80px; }
 
   .gestao-header{
     grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
   }
 
   .gestao-title{
     font-size: 64px;
   }
 
+  .metrics {
+    align-items: center;
+  }
+
   .metric .txt{ font-size: 22px; }
+
+  /* Desativa as linhas conectivas no mobile */
+  .org-lines {
+      display: none;
+  }
+
+  /* Transforma o gráfico numa lista vertical */
+  .org-chart {
+      height: auto;
+      aspect-ratio: unset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px; /* Espaço entre as pessoas */
+      margin-top: 40px;
+  }
+
+  /* Reseta a posição absoluta das pessoas com !important para garantir */
+  .person {
+      position: relative !important;
+      left: auto !important;
+      top: auto !important;
+      transform: none !important;
+      width: 100%;
+      max-width: 350px;
+      
+      /* Anula as variáveis de posição */
+      --x: 0;
+      --y: 0;
+  }
+}
+
+/* =========================================
+   NAVBAR SIMPLIFICADA (MOBILE GESTÃO)
+   ========================================= */
+
+/* Por padrão, o botão de voltar mobile está escondido no PC */
+.mobile-only-home-btn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* 1. Esconde TUDO o que existia na navbar (Links e Título Grande) */
+    .navbar-links, 
+    .navbar-center {
+        display: none !important;
+    }
+
+    /* 2. Configura a Navbar para mostrar só o botão */
+    .navbar {
+        justify-content: center; /* Centraliza o botão */
+        padding: 15px;
+        height: auto;
+    }
+
+    /* 3. Estiliza o botão "Retornar para Home" */
+    .mobile-only-home-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid #4169e1;
+        color: #fff;
+        padding: 12px 30px;
+        border-radius: 30px; /* Bordas redondas */
+        text-decoration: none;
+        font-family: "Rajdhani", sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: 0.3s;
+    }
+
+    .mobile-only-home-btn:hover {
+        background-color: #4169e1;
+    }
 }

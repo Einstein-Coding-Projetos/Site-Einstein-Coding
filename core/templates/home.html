@@ -8,6 +8,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <style>
+        .home-section {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 40px; 
+        }
+        .btn-outline {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-outline:hover {
+            background-color: #ffffff;
+            color: #4169e1;
+        }
+        .cards-grid, .news-grid {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,85 +45,144 @@
             <a href="/projetos/">Nossos Projetos</a>
             <a href="/servicos/">Nossos Serviços</a>
         </nav>
-    
         <div class="navbar-center">
-            <a href="/" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a>
+            <a href="/" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a> 
         </div>
-    
         <nav class="navbar-links right">
             <a href="/codigo-social/">Código Social</a>
             <a href="/noticias/">Notícias</a>
-            <a href="/gestao/">Gestão</a>
-            <a href="/loja/">Loja</a>
+            <a href="/loja/">Loja</a> <a href="/gestao/">Gestão</a>
         </nav>
     </header>
 
-    <section id="top" class="hero">
-        <h1>Healthtech Junior Einstein</h1>
+    <section class="hero" style="height: 60vh; margin-bottom: 40px;">
+        <h1>Healthtech Junior Einstein </h1> 
         <p>Onde o código encontra o cuidado</p>
     </section>
 
-    <section class="about" style="padding-bottom: 20px;">
-        <h2>Inovação em Saúde</h2>
-        <p class="intro-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
-            Somos a primeira empresa júnior focada em soluções tecnológicas para a saúde dentro da FICSAE. 
-            Desenvolvemos softwares, sites e sistemas personalizados que conectam a engenharia à prática médica, 
-            entregando eficiência e inovação para transformar a realidade do setor.
+    <section class="about home-section">
+        <h2>Quem Somos</h2>
+        <p class="intro-text">
+            Somos a primeira Empresa Júnior de Engenharia Biomédica focada exclusivamente em desenvolvimento de software e soluções digitais.
+            Nascemos para preencher uma lacuna no mercado, unindo a expertise clínica com a programação de alto nível.
         </p>
+        <p class="intro-text">
+            Seja você um estudante buscando evolução técnica ou um parceiro buscando inovação, a HJE é o lugar onde a tecnologia encontra o propósito.
+        </p>
+        <a href="/sobre-nos/" class="btn-outline">Conheça nossa História</a>
     </section>
 
-    <section class="about-columns" style="margin-top: 40px; margin-bottom: 40px;">
-        <div style="text-align: center;">
-            <div class="about-title" style="justify-content: center;">
-                <h3>HJE Consultoria</h3>
-                <img src="{% static 'imgs/visao.png' %}" alt="Consultoria" style="height: 50px;">
-            </div>
-            <p>Desenvolvimento de projetos tecnológicos e soluções de software para clientes reais na área da saúde e bem-estar.</p>
-        </div>
-
-        <div style="text-align: center;">
-            <div class="about-title" style="justify-content: center;">
-                <h3>Código Social</h3>
-                <img src="{% static 'imgs/missao.png' %}" alt="Código Social" style="height: 50px;">
-            </div>
-            <p>Nosso braço filantrópico. Levamos o ensino de programação a jovens em vulnerabilidade, usando a tecnologia como ferramenta de transformação social.</p>
-            <a href="/sobre-nos/" class="read-more" style="margin-top: 10px; display: inline-block;">Saiba mais sobre nós</a>
-        </div>
-    </section>
-
-    <section class="breaking-news">
-        <div class="breaking-title">
-            <h2 style="font-family: 'Teko', sans-serif; font-size: 2.5rem; color: #004aad;">NOSSOS PROJETOS RECENTES</h2>
-        </div>
+    <section class="about home-section">
+        <h2>O Que Desenvolvemos</h2>
+        <p style="margin-bottom: 20px;">Confira algumas das soluções que nossa equipe já colocou em prática.</p>
         
-        <div class="news-grid">
-            {% for project in recent_projects %}
-                <div class="news-card">
-                    {% if project.image %}
-                        <img src="{{ project.image.url }}" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
-                    {% endif %}
+        <div class="projects-grid">
+            {% for project in projects|slice:":3" %}
+            <div class="project-card">
+                {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                {% endif %}
+                <div class="project-info">
                     <h3>{{ project.title }}</h3>
                     <p>{{ project.summary|truncatechars:100 }}</p>
-                    <a href="/projetos/" class="read-more">Ver projeto</a>
                 </div>
+            </div>
             {% empty %}
-                <p>Confira nossa aba de projetos para ver nosso portfólio completo.</p>
+                <p>Nossa equipe está trabalhando em novidades incríveis.</p>
             {% endfor %}
         </div>
         
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="/projetos/" class="btn" style="background-color: #004aad; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">VER TODOS OS PROJETOS</a>
+        <a href="/projetos/" class="btn-outline">Ver Todos os Projetos</a>
+    </section>
+
+    <section class="about home-section">
+        <h2>Nosso Impacto Social</h2>
+        <p class="intro-text">
+            Não somos apenas código. Através do <strong>Código Social</strong>, levamos o ensino de programação para jovens em vulnerabilidade, 
+            acreditando que a tecnologia é a maior ferramenta de ascensão social do século XXI.
+        </p>
+        <a href="/codigo-social/" class="btn-outline">Conheça o Código Social</a>
+    </section>
+
+    <section class="about home-section">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Últimas Notícias</h2>
+        
+        <div class="news-grid">
+            {% for news in featured_news %}
+                <div class="news-card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+                    {% if news.image %}
+                        <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width: 100%; border-radius: 5px; margin-bottom: 15px;">
+                    {% endif %}
+
+                    <h3 style="color: #ffffff;">{{ news.title }}</h3>
+                    <p>{{ news.summary|truncatechars:120 }}</p>
+
+                    <a href="/noticias/{{ news.id }}/" class="read-more" style="color: #ffffff; font-weight: bold; margin-top: 10px; display: block; text-decoration: underline;">
+                        Ler mais
+                    </a>
+                </div>
+            {% empty %}
+                <p>Nenhuma notícia em destaque no momento.</p>
+            {% endfor %}
+        </div>
+
+        <div style="margin-top: 30px;">
+            <p class="intro-text">
+                Quer ver tudo o que está acontecendo? 
+                <a href="/noticias/" style="color: #ffffff; text-decoration: underline;">Acesse todas as notícias</a>.
+            </p>
         </div>
     </section>
 
-    <footer class="footer">
-        <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
-            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
+    <section id="processo-seletivo" class="about home-section">
+        <h2>Faça Parte do Time</h2>
+        <p class="intro-text">
+            Quer colocar a mão na massa em projetos reais ou liderar iniciativas de Marketing e RH?
+            Acompanhe nossos processos seletivos.
+        </p>
+
+        <div class="cards-grid">
+            {% for card in healthcare_cards %}
+                <div class="card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.3);">
+    
+                    <h3 style="color: #ffffff; font-family: 'Teko', sans-serif; font-size: 1.8rem;">{{ card.title }}</h3>
+                    <p style="margin: 15px 0;">{{ card.description }}</p>
+    
+                    {% if card.status == 'aberto' and card.form_link %}
+                        <a href="{{ card.form_link }}" target="_blank" class="btn" style="background-color: #ffffff; color: #00A859; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 10px; font-weight: bold;">
+                            Inscreva-se Agora
+                        </a>
+                    {% else %}
+                        <div class="status" style="margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 5px; display: inline-block;">
+                            <span style="color: #aaa;">Status: Fechado</span><br>
+                            {% if card.opening_date %}
+                                <span style="color: #ffffff; font-weight: bold;">Próxima abertura: {{ card.opening_date }}</span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+    
+                </div>
+            {% empty %}
+                <p>Nenhum processo seletivo visível no momento.</p>
+            {% endfor %}
         </div>
+    </section>
+
+     <footer class="footer">
+        <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
+    
+        <div class="social-links">
+            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank" aria-label="Instagram">
+                <img src="{% static 'imgs/instagram.svg' %}" alt="Instagram">
+            </a>
+    
+            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
+                <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
+            </a>
+        </div>
+
         <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
-        <p>Email: einstein.coding@outlook.com</p>
+            <p>Email: einstein.coding@outlook.com</p>
     </footer>    
 </body>
 </html>

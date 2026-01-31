@@ -10,14 +10,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- CSS global (home) -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <!-- CSS da página Gestão -->
   <link rel="stylesheet" href="{% static 'css/gestao.css' %}">
 </head>
 
 <body>
   <header class="navbar">
+    <a href="{% url 'home' %}" class="mobile-only-home-btn">
+        <span>&#8592;</span> Retornar para Home
+    </a>
+    
     <nav class="navbar-links left">
       <a href="/codigo-social/">Código Social</a>
       <a href="{% url 'home' %}">Healthtech Junior Einstein</a>
@@ -36,8 +38,7 @@
 
   <main class="gestao-page">
     <section class="gestao-container">
-      <div class="gestao-header">
-        <h1 class="gestao-title">Nossa gestão</h1>
+      <div class="gestao-header hidden-element"> <h1 class="gestao-title">Nossa gestão</h1>
 
         <div class="metrics">
           <div class="metric">
@@ -52,32 +53,22 @@
       </div>
 
       <section class="org-chart" aria-label="Organograma Healthtech Junior Einstein">
-        <!-- Linhas SVG no fundo -->
-        <svg class="org-lines" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <!-- Presidente -> vice (formato “L”) -->
+        <svg class="org-lines hidden-element" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
           <path d="M 600 115 L 600 215 L 820 215" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-
-          <!-- Presidente -> linha diretores -->
           <path d="M 600 215 L 600 305" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
           <path d="M 50 305 L 1150 305" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-
-          <!-- Perninhas diretores -->
           <path d="M 50 307 L 50 370" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
           <path d="M 324 305 L 324 370" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
           <path d="M 600 305 L 600 370" fill="none" stroke="#ffffFF" stroke-width="4" stroke-linecap="round"/>
           <path d="M 875 305 L 875 370" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
           <path d="M 1150 305 L 1150 370" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-
-          <!-- Perninhas para as caixas de membros -->
           <path d="M 50 550 L 50 600" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
           <path d="M 324 550 L 324 600" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
           <path d="M 600 550 L 600 600" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/> 
           <path d="M 1150 550 L 1150 600" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-          <!--<path d="M 1060 340 L 1060 380" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/> -->
         </svg>
 
-        <!-- PRESIDENTE -->
-        <div class="person p-presidente">
+        <div class="person p-presidente hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/andre.jpg' %}" alt="André Miyake">
           <div class="card">
             <p class="name">ANDRÉ MIYAKE</p>
@@ -86,8 +77,7 @@
           </div>
         </div>
 
-        <!-- VICE -->
-        <div class="person p-vice">
+        <div class="person p-vice hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/rafael_sender.jpg' %}" alt="Rafael Sender">
           <div class="card">
             <p class="name">RAFAEL SENDER</p>
@@ -96,8 +86,7 @@
           </div>
         </div>
 
-        <!-- DIRETORES -->
-        <div class="person p-dir1">
+        <div class="person p-dir1 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/bianca.jpg' %}" alt="Bianca Peixoto">
           <div class="card">
             <p class="name">BIANCA PEIXOTO</p>
@@ -111,7 +100,7 @@
           </div>
         </div>
 
-        <div class="person p-dir2">
+        <div class="person p-dir2 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/matheus.jpg' %}" alt="Matheus Busnardo">
           <div class="card">
             <p class="name">MATHEUS MOTA B.</p>
@@ -125,7 +114,7 @@
           </div>
         </div>
 
-        <div class="person p-dir3">
+        <div class="person p-dir3 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/thomaz.jpg' %}" alt="Thomaz Arruda">
           <div class="card">
             <p class="name">THOMAZ ARRUDA</p>
@@ -144,7 +133,7 @@
           </div>
         </div>
 
-        <div class="person p-dir4">
+        <div class="person p-dir4 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/rafael_fernandez.jpg' %}" alt="Rafael Fernandez">
           <div class="card">
             <p class="name">RAFAEL FERNANDEZ</p>
@@ -153,7 +142,7 @@
           </div>
         </div>
 
-        <div class="person p-dir5">
+        <div class="person p-dir5 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/henrique.jpg' %}" alt="Henrique Martins">
           <div class="card">
             <p class="name">HENRIQUE MARTINS</p>
@@ -183,5 +172,6 @@
 
     <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
   </footer>
+
 </body>
 </html>
