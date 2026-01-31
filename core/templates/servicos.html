@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Nossos Serviços - HJE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header class="navbar">
+        <nav class="navbar-links left">
+            <a href="/sobre-nos/">Sobre nós</a>
+            <a href="/projetos/">Nossos Projetos</a>
+            <a href="/servicos/" class="active">Nossos Serviços</a>
+        </nav>
+        <div class="navbar-center">
+            <a href="/" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a>
+        </div>
+        <nav class="navbar-links right">
+            <a href="/codigo-social/">Código Social</a>
+            <a href="/noticias/">Notícias</a>
+            <a href="/gestao/">Gestão</a>
+        </nav>
+    </header>
+
+    <section class="hero" style="height: 50vh;">
+        <h1>Parcerias e Serviços</h1>
+        <p>Conecte-se com a inovação</p>
+    </section>
+
+    <section class="about" style="text-align: center; min-height: 300px;">
+        <h2>Fale Conosco</h2>
+        
+        <p class="intro-text" style="max-width: 800px; margin: 40px auto;">
+            Caso possua interesse e tenha a intenção de fechar uma parceria, contrato ou serviço com a gente, entre em contato pelo seguinte e-mail:
+        </p>
+        
+        <div style="margin: 40px 0;">
+            <a href="mailto:einstein.coding@outlook.com" class="btn" style="background-color: #004aad; color: white; padding: 20px 40px; font-size: 1.2rem; text-decoration: none; border-radius: 8px;">
+                einstein.coding@outlook.com
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
+        </div>
+        <p>Email: einstein.coding@outlook.com</p>
+    </footer>    
+</body>
+</html>

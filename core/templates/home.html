@@ -4,185 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <title>Healthtech Junior Einstein</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
 
     <header class="navbar">
         <nav class="navbar-links left">
-            <a href="/codigo-social/">Código Social</a>
-            <a href="#sobre-nos">Sobre nós</a>
+            <a href="/sobre-nos/">Sobre nós</a>
             <a href="/projetos/">Nossos Projetos</a>
+            <a href="/servicos/">Nossos Serviços</a>
         </nav>
     
         <div class="navbar-center">
-            <a href="#top" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a>
+            <a href="/" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a>
         </div>
     
         <nav class="navbar-links right">
+            <a href="/codigo-social/">Código Social</a>
             <a href="/noticias/">Notícias</a>
             <a href="/gestao/">Gestão</a>
             <a href="/loja/">Loja</a>
         </nav>
     </header>
-    
 
     <section id="top" class="hero">
         <h1>Healthtech Junior Einstein</h1>
         <p>Onde o código encontra o cuidado</p>
     </section>
 
-    <section id="sobre-nos" class="about">
-        <h2>Sobre Nós</h2>
-
-        <p class="intro-text">
-            A Healthtech Junior Einstein é uma entidade estudantil criada por alunos da Engenharia 
-            Biomédica da FICSAE. Nos dedicamos ao desenvolvimento
-            de soluções tecnológicas e de programação aplicadas à área da saúde,
-            unindo inovação, impacto social e aprendizado contínuo.
-            Somos uma comunidade que acredita no poder do código para transformar realidades.
+    <section class="about" style="padding-bottom: 20px;">
+        <h2>Inovação em Saúde</h2>
+        <p class="intro-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            Somos a primeira empresa júnior focada em soluções tecnológicas para a saúde dentro da FICSAE. 
+            Desenvolvemos softwares, sites e sistemas personalizados que conectam a engenharia à prática médica, 
+            entregando eficiência e inovação para transformar a realidade do setor.
         </p>
+    </section>
 
-        <div class="about-columns">
-            <div>
-                <div class="about-title">
-                    <h3>Missão</h3>
-                    <img src="{% static 'imgs/missao.png' %}" alt="Missão">
-                </div>
-                <p>Nossa missão é transformar vidas por meio da programação.</p>
-                <p>Trabalhamos em duas frentes:</p>
-                <p>1. Healthtech Junior Einstein: Espaço de prática e aprendizado de programação avançada;</p>
-                <p>2. Código Social: projeto voluntário que oferece aulas de programação para jovens 
-                    em situação de vulnerabilidade.</p>
-                <p>Transformamos realidades por meio de código que gera impacto social!</p>
+    <section class="about-columns" style="margin-top: 40px; margin-bottom: 40px;">
+        <div style="text-align: center;">
+            <div class="about-title" style="justify-content: center;">
+                <h3>HJE Consultoria</h3>
+                <img src="{% static 'imgs/visao.png' %}" alt="Consultoria" style="height: 50px;">
             </div>
+            <p>Desenvolvimento de projetos tecnológicos e soluções de software para clientes reais na área da saúde e bem-estar.</p>
+        </div>
 
-            <div>
-                <div class="about-title">
-                    <h3>Visão</h3>
-                    <img src="{% static 'imgs/visao.png' %}" alt="Visão">
-                </div>
-                <p>
-                    Ser referência em desenvolvimento tecnológico estudantil voltado à saúde,
-                    formando profissionais capacitados e comprometidos com a sociedade.
-                </p>
+        <div style="text-align: center;">
+            <div class="about-title" style="justify-content: center;">
+                <h3>Código Social</h3>
+                <img src="{% static 'imgs/missao.png' %}" alt="Código Social" style="height: 50px;">
             </div>
-
-            <div>
-                <div class="about-title">
-                    <h3>Valores</h3>
-                    <img src="{% static 'imgs/valores.png' %}" alt="Valores">
-                </div>
-                <ul>
-                    <li>Inovação</li>
-                    <li>Impacto social</li>
-                    <li>Colaboração</li>
-                    <li>Ética</li>
-                    <li>Aprendizado contínuo</li>
-                </ul>
-            </div>
+            <p>Nosso braço filantrópico. Levamos o ensino de programação a jovens em vulnerabilidade, usando a tecnologia como ferramenta de transformação social.</p>
+            <a href="/sobre-nos/" class="read-more" style="margin-top: 10px; display: inline-block;">Saiba mais sobre nós</a>
         </div>
     </section>
 
     <section class="breaking-news">
         <div class="breaking-title">
-            <img src="{% static 'imgs/breakingnews.png' %}" alt="Breaking News">
+            <h2 style="font-family: 'Teko', sans-serif; font-size: 2.5rem; color: #004aad;">NOSSOS PROJETOS RECENTES</h2>
         </div>
         
-
         <div class="news-grid">
-            {% for news in featured_news %}
+            {% for project in recent_projects %}
                 <div class="news-card">
-                    {% if news.image %}
-                        <img src="{{ news.image.url }}" alt="{{ news.title }}">
+                    {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
                     {% endif %}
-
-                    <h3>{{ news.title }}</h3>
-                    <p>{{ news.summary }}</p>
-
-                    <a href="/noticias/{{ news.id }}/" class="read-more">
-                        Ler mais
-                    </a>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.summary|truncatechars:100 }}</p>
+                    <a href="/projetos/" class="read-more">Ver projeto</a>
                 </div>
             {% empty %}
-                <p>Nenhuma notícia em destaque no momento.</p>
+                <p>Confira nossa aba de projetos para ver nosso portfólio completo.</p>
             {% endfor %}
         </div>
-    </section>
-
-    <section id="outras-noticias" class="breaking-news outras-noticias">
-        <div class="outras-noticias-content">
-            <h2>Outras notícias</h2>
-    
-            <p class="intro-text">
-                Para visualizar todas as notícias publicadas, siga para a seção 
-                <a href="/noticias/" class="link-destaque">Notícias</a>.
-            </p>
-        </div>
-    </section>  
-
-    <section id="como-contribuir" class="contribuicao" style="padding-top: 0;">
-        <div class="contribuicao-columns" style="grid-template-columns: 1fr;">
-            <div>
-                <h2>Contribuição</h2>
-                <p>Faça parte de uma das equipes de desenvolvimento de projetos para aprendizado de 
-                    programação mão na massa ou demonstre seu interesse em assumir um cargo para o 
-                    desenvolvimento e maturação do projeto como um todo nas áreas de Marketing ou RH! 
-                    Exclusivo para alunos do curso de Engenharia Biomédica da FICSAE.
-                    Link de inscrição aberto somente durante os períodos de seleção.</p>
-            </div>
-        </div>
-    </section>  
-
-    <section class="codigo-social-cards">
-        <div class="cards-grid">
-            {% for card in healthcare_cards %}
-                <div class="card">
-    
-                    <h3>{{ card.title }}</h3>
-                    <p>{{ card.description }}</p>
-    
-                    {% if card.status == 'aberto' and card.form_link %}
-                        <a href="{{ card.form_link }}" target="_blank" class="btn">
-                            Inscreva-se
-                        </a>
-                    {% else %}
-                        <p class="status">
-                            Próxima abertura: {{ card.opening_date }}
-                        </p>
-                    {% endif %}
-    
-                </div>
-            {% empty %}
-                <p>Nenhum processo seletivo disponível no momento.</p>
-            {% endfor %}
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/projetos/" class="btn" style="background-color: #004aad; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">VER TODOS OS PROJETOS</a>
         </div>
     </section>
-     
-       
 
     <footer class="footer">
         <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
-    
         <div class="social-links">
-            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank" aria-label="Instagram">
-                <img src="{% static 'imgs/instagram.svg' %}" alt="Instagram">
-            </a>
-    
-            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
-                <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
-            </a>
+            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
         </div>
-
         <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
-            <p>Email: einstein.coding@outlook.com</p>
+        <p>Email: einstein.coding@outlook.com</p>
     </footer>    
-    
 </body>
 </html>

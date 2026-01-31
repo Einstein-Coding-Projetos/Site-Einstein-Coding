@@ -1,42 +1,21 @@
 from django.db import models
 
-
 class News(models.Model):
-    title = models.CharField(
-        max_length=200,
-        verbose_name="Título"
-    )
-
-    summary = models.TextField(
-        max_length=500,
-        verbose_name="Resumo"
-    )
-
-    content = models.TextField(
-        verbose_name="Conteúdo completo"
-    )
-
-    image = models.ImageField(
-        upload_to='news/',
-        blank=True,
+    title = models.CharField("Título", max_length=200)
+    summary = models.TextField("Resumo", max_length=500)
+    content = models.TextField("Conteúdo completo")
+    image = models.ImageField("Imagem", upload_to='news/', blank=True, null=True)
+    is_featured = models.BooleanField("Destaque na Home", default=False)
+    
+    external_link = models.URLField(
+        "Link externo", 
+        blank=True, 
         null=True,
-        verbose_name="Imagem da notícia"
+        help_text="Link externo relacionado à notícia (opcional)"
     )
     
-    is_featured = models.BooleanField(
-        default=False,
-        verbose_name="Destaque na Home"
-    )
-
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name="Data de criação"
-    )
-
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        verbose_name="Última atualização"
-    )
+    created_at = models.DateTimeField("Data de criação", auto_now_add=True)
+    updated_at = models.DateTimeField("Última atualização", auto_now=True)
 
     class Meta:
         verbose_name = "Notícia"
@@ -48,12 +27,17 @@ class News(models.Model):
 
 
 class Project(models.Model):
-    title = models.CharField(max_length=200)
-    summary = models.TextField()
-    image = models.ImageField(upload_to='projects/', blank=True, null=True)
-    link = models.URLField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    is_active = models.BooleanField(default=True)
+    title = models.CharField("Título", max_length=200)
+    summary = models.TextField("Resumo")
+    image = models.ImageField("Imagem", upload_to='projects/', blank=True, null=True)
+    link = models.URLField("Link do Projeto", blank=True, null=True)
+    created_at = models.DateTimeField("Data de criação", auto_now_add=True)
+    is_active = models.BooleanField("Ativo", default=True)
+
+    class Meta:
+        verbose_name = "Projeto"
+        verbose_name_plural = "Projetos"
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
@@ -99,8 +83,6 @@ class CodigoSocialCard(models.Model):
         return self.title
 
 
-from django.db import models
-
 class HealthcareJuniorCard(models.Model):
     STATUS_CHOICES = [
         ('aberto', 'Processo Seletivo Aberto'),
@@ -136,24 +118,6 @@ class HealthcareJuniorCard(models.Model):
         verbose_name = "Card da Healthcare Júnior Einstein"
         verbose_name_plural = "Cards da Healthcare Júnior Einstein"
         ordering = ['-created_at']
-
-    def __str__(self):
-        return self.title
-
-class News(models.Model):
-    title = models.CharField(max_length=200)
-    summary = models.TextField()
-    content = models.TextField()
-    image = models.ImageField(upload_to='news/', blank=True, null=True)
-    is_featured = models.BooleanField(default=False)
-    
-    external_link = models.URLField(
-        blank=True,
-        null=True,
-        help_text="Link externo relacionado à notícia (opcional)"
-    )
-    
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre Nós - HJE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <header class="navbar">
+        <nav class="navbar-links left">
+            <a href="/sobre-nos/" class="active">Sobre nós</a>
+            <a href="/projetos/">Nossos Projetos</a>
+            <a href="/servicos/">Nossos Serviços</a>
+        </nav>
+        <div class="navbar-center">
+            <a href="/" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a>
+        </div>
+        <nav class="navbar-links right">
+            <a href="/codigo-social/">Código Social</a>
+            <a href="/noticias/">Notícias</a>
+            <a href="/gestao/">Gestão</a>
+        </nav>
+    </header>
+
+    <section class="hero" style="height: 40vh; min-height: 300px;">
+        <h1>Quem Somos</h1>
+        <p>Nossa história, missão e valores</p>
+    </section>
+
+    <section class="about">
+        <h2>A Healthtech Junior Einstein</h2>
+
+        <p class="intro-text">
+            A Healthtech Junior Einstein é uma entidade estudantil criada por alunos da Engenharia 
+            Biomédica da FICSAE. Nos dedicamos ao desenvolvimento
+            de soluções tecnológicas e de programação aplicadas à área da saúde,
+            unindo inovação, impacto social e aprendizado contínuo.
+            Somos uma comunidade que acredita no poder do código para transformar realidades.
+        </p>
+
+        <div class="about-columns">
+            <div>
+                <div class="about-title">
+                    <h3>Missão</h3>
+                    <img src="{% static 'imgs/missao.png' %}" alt="Missão">
+                </div>
+                <p>Nossa missão é transformar vidas por meio da programação.</p>
+                <p>Atuamos com excelência técnica no desenvolvimento de software e responsabilidade social.</p>
+            </div>
+
+            <div>
+                <div class="about-title">
+                    <h3>Visão</h3>
+                    <img src="{% static 'imgs/visao.png' %}" alt="Visão">
+                </div>
+                <p>
+                    Ser referência em desenvolvimento tecnológico estudantil voltado à saúde,
+                    formando profissionais capacitados e comprometidos com a sociedade.
+                </p>
+            </div>
+
+            <div>
+                <div class="about-title">
+                    <h3>Valores</h3>
+                    <img src="{% static 'imgs/valores.png' %}" alt="Valores">
+                </div>
+                <ul>
+                    <li>Inovação</li>
+                    <li>Impacto social</li>
+                    <li>Colaboração</li>
+                    <li>Ética</li>
+                    <li>Aprendizado contínuo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" style="background-color: #f4f4f4;">
+        <h2>O Código Social</h2>
+        <p class="intro-text">
+            O Código Social é o pilar filantrópico da HJE. Entendemos que a tecnologia é uma ferramenta poderosa de ascensão social e profissional.
+        </p>
+        <p class="intro-text">
+            Através deste projeto voluntário, oferecemos aulas de lógica de programação, Python e desenvolvimento web para jovens em situação de vulnerabilidade socioeconômica, abrindo portas para o mercado de tecnologia.
+        </p>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
+        </div>
+    </footer>    
+</body>
+</html>
