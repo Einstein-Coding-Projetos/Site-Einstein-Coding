@@ -40,6 +40,11 @@
 <body>
 
     <header class="navbar">
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
         <nav class="navbar-links left">
             <a href="/sobre-nos/">Sobre nós</a>
             <a href="/projetos/">Nossos Projetos</a>
@@ -183,6 +188,13 @@
 
         <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
             <p>Email: einstein.coding@outlook.com</p>
-    </footer>    
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
