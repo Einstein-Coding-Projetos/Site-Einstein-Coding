@@ -1087,6 +1087,12 @@ section h2 {
     border-bottom: 2px solid white;
 }
 
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* 1. Esconde o botão no Desktop */
 .hamburger-menu {
     display: none;
