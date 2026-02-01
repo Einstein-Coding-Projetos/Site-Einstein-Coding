@@ -9,46 +9,138 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/gestao.css' %}">
 </head>
 
 <body>
-  <header class="navbar">
-    <a href="{% url 'home' %}" class="mobile-only-home-btn">
-        <span>&#8592;</span> Retornar para Home
-    </a>
-    
-    <nav class="navbar-links left">
-      <a href="/codigo-social/">Código Social</a>
-      <a href="{% url 'home' %}">Healthtech Junior Einstein</a>
-    </nav>
+ <style>
+        #mobile-header-overlay { display: none !important; }
+        #desktop-original-header { display: grid !important; } 
+        #mobile-spacer { display: none; height: 80px; }
 
-    <div class="navbar-center">
-      <a href="/#top" class="brand">NOSSA GESTÃO<br>ATUAL</a>
+        /* REGRAS APENAS PARA CELULAR (Mobile < 950px) */
+        @media screen and (max-width: 950px) {
+            /* 1. Esconde Header Desktop */
+            #desktop-original-header { display: none !important; }
+            
+            /* 2. Header Mobile (Estilo Vidro) */
+            #mobile-header-overlay { 
+                display: flex !important; flex-direction: column; width: 100%;
+                position: fixed; top: 0; left: 0; z-index: 9999999;
+                
+                /* Fundo transparente (vidro) - IGUAL ÀS CAIXAS */
+                background: rgba(255, 255, 255, 0.05) !important; 
+                backdrop-filter: blur(15px) !important;
+                -webkit-backdrop-filter: blur(15px);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+            #mobile-spacer { display: block; }
+
+            /* 3. Ajustes Gerais de Layout Mobile (Margens e Colunas) */
+            .about, .home-section, .card, .news-card, .project-card, .glass, 
+            .noticias-header, .news-detail, .projetos-grid, .gestao-card, section, 
+            .produtos-a-venda, .latest-news, .noticias-container, .contribuicao {
+                padding: 25px 20px !important;
+                margin-left: 0 !important; margin-right: 0 !important;
+                width: auto !important; max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Força colunas únicas nas grids */
+            .cards-grid, .news-grid, .projects-grid, .product-grid, 
+            .about-columns, .lista-noticias, .contribuicao-columns {
+                display: flex !important; flex-direction: column !important; gap: 25px !important;
+                width: 100% !important; padding: 0 !important;
+            }
+
+            /* Ajustes Específicos para centralizar cards */
+            .card-noticia, .news-card, .project-card, .caixa-de-compras {
+                width: 90% !important; margin: 0 auto !important;
+            }
+            
+            /* Ajuste de Filtro de Notícias */
+            .noticias-header { text-align: center !important; width: 92% !important; margin: 0 auto !important; }
+            .noticias-filtro { width: 100% !important; display: flex !important; flex-direction: column !important; gap: 10px !important; }
+            .noticias-filtro input, .noticias-filtro select, .noticias-filtro button { width: 100% !important; margin: 0 !important; }
+
+            /* Ajuste de Fontes */
+            h1, .hero h1 { font-size: 3.2rem !important; line-height: 1.1; } 
+            h2 { font-size: 2.2rem !important; }
+
+            /* 4. Estilos do Topo Mobile */
+            .mob-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 25px; height: 80px; }
+            
+            /* LOGO SEM TEXTO */
+            .mob-logo { 
+                display: flex; align-items: center; 
+                gap: 1px; /* Gap ajustado */
+                text-decoration: none; 
+            }
+            
+            .mob-logo img { 
+                height: 65px; /* Tamanho ajustado */
+                width: auto; 
+                filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); 
+            }
+
+            .mob-btn { width: 30px; height: 22px; display: flex; flex-direction: column; justify-content: space-between; background: none; border: none; padding: 0; cursor: pointer; }
+            .mob-btn span { display: block; width: 100%; height: 3px; background: #fff; border-radius: 4px; transition: 0.3s; }
+            
+            /* Menu Aberto (Gaveta) */
+            .mob-links { 
+                background: rgba(255, 255, 255, 0.05); /* Fundo vidro */
+                backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+                width: 100%; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; 
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .mob-links.open { max-height: 100vh; overflow-y: auto; }
+            .mob-links a { padding: 20px 0; text-align: center; color: #fff; display: block; font-family: 'Teko', sans-serif; font-size: 24px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            
+            /* Animação do X */
+            .mob-btn.active span:nth-child(1) { transform: translateY(9.5px) rotate(45deg); } 
+            .mob-btn.active span:nth-child(2) { opacity: 0; } 
+            .mob-btn.active span:nth-child(3) { transform: translateY(-9.5px) rotate(-45deg); }
+        }
+    </style>
+
+    <div id="mobile-header-overlay">
+        <div class="mob-top">
+            <a href="/" class="mob-logo">
+                <img src="{% static 'imgs/HJE.png' %}" alt="HJE Logo">
+                </a>
+            <button class="mob-btn" onclick="this.classList.toggle('active'); document.getElementById('mobMenuOverlay').classList.toggle('open');">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="mob-links" id="mobMenuOverlay">
+            <a href="/">Início</a>
+            <a href="/sobre-nos/">Sobre nós</a>
+            <a href="/projetos/">Nossos Projetos</a>
+            <a href="/servicos/">Nossos Serviços</a>
+            <a href="/codigo-social/">Código Social</a>
+            <a href="/noticias/">Notícias</a>
+            <a href="/loja/">Loja</a>
+            <a href="/gestao/">Gestão</a>
+        </nav>
     </div>
+    <div id="mobile-spacer"></div>
 
-    <nav class="navbar-links right">
-      <a href="/projetos/">Nossos Projetos</a>
-      <a href="/noticias/">Notícias</a>
-      <a href="/loja/">Loja</a>
-    </nav>
+  <header id="desktop-original-header" class="navbar">
+    <a href="{% url 'home' %}" class="mobile-only-home-btn"><span>&#8592;</span> Retornar para Home</a>
+    <nav class="navbar-links left"><a href="/codigo-social/">Código Social</a><a href="{% url 'home' %}">Healthtech Junior Einstein</a></nav>
+    <div class="navbar-center"><a href="/#top" class="brand">NOSSA GESTÃO<br>ATUAL</a></div>
+    <nav class="navbar-links right"><a href="/projetos/">Nossos Projetos</a><a href="/noticias/">Notícias</a><a href="/loja/">Loja</a></nav>
   </header>
 
   <main class="gestao-page">
     <section class="gestao-container">
-      <div class="gestao-header hidden-element"> <h1 class="gestao-title">Nossa gestão</h1>
-
+      <div class="gestao-header hidden-element"> 
+        <h1 class="gestao-title">Nossa gestão</h1>
         <div class="metrics">
-          <div class="metric">
-            <span class="num">42</span>
-            <span class="txt">Membros totais</span>
-          </div>
-          <div class="metric">
-            <span class="num">36</span>
-            <span class="txt">Membros em projetos</span>
-          </div>
+          <div class="metric"><span class="num">42</span><span class="txt">Membros totais</span></div>
+          <div class="metric"><span class="num">36</span><span class="txt">Membros em projetos</span></div>
         </div>
       </div>
 
@@ -70,88 +162,41 @@
 
         <div class="person p-presidente hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/andre.jpg' %}" alt="André Miyake">
-          <div class="card">
-            <p class="name">ANDRÉ MIYAKE</p>
-            <p class="role">PRESIDENTE</p>
-            <p class="phone">11 98714-1260</p>
-          </div>
+          <div class="card"><p class="name">ANDRÉ MIYAKE</p><p class="role">PRESIDENTE</p><p class="phone">11 98714-1260</p></div>
         </div>
 
         <div class="person p-vice hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/rafael_sender.jpg' %}" alt="Rafael Sender">
-          <div class="card">
-            <p class="name">RAFAEL SENDER</p>
-            <p class="role">VICE PRESIDENTE</p>
-            <p class="phone">11 96500-8273</p>
-          </div>
+          <div class="card"><p class="name">RAFAEL SENDER</p><p class="role">VICE PRESIDENTE</p><p class="phone">11 96500-8273</p></div>
         </div>
 
         <div class="person p-dir1 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/bianca.jpg' %}" alt="Bianca Peixoto">
-          <div class="card">
-            <p class="name">BIANCA PEIXOTO</p>
-            <p class="role">DIRETORA DE MARKETING</p>
-            <p class="phone">11 95281-7886</p>
-          </div>
-          <div class="members small">
-            Ana Beatriz Pampalon<br>
-            Brenda Lira<br>
-            Graziele Rodrigues
-          </div>
+          <div class="card"><p class="name">BIANCA PEIXOTO</p><p class="role">DIRETORA DE MARKETING</p><p class="phone">11 95281-7886</p></div>
+          <div class="members small">Ana Beatriz Pampalon<br>Brenda Lira<br>Graziele Rodrigues</div>
         </div>
 
         <div class="person p-dir2 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/matheus.jpg' %}" alt="Matheus Busnardo">
-          <div class="card">
-            <p class="name">MATHEUS MOTA B.</p>
-            <p class="role">DIRETOR DE RH</p>
-            <p class="phone">11 94260-2005</p>
-          </div>
-          <div class="members small">
-            Yunes Natal<br>
-            Rian Ryuuichi<br>
-            Carolina Scilingo
-          </div>
+          <div class="card"><p class="name">MATHEUS MOTA B.</p><p class="role">DIRETOR DE RH</p><p class="phone">11 94260-2005</p></div>
+          <div class="members small">Yunes Natal<br>Rian Ryuuichi<br>Carolina Scilingo</div>
         </div>
 
         <div class="person p-dir3 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/thomaz.jpg' %}" alt="Thomaz Arruda">
-          <div class="card">
-            <p class="name">THOMAZ ARRUDA</p>
-            <p class="role">DIRETOR ADMINISTRATIVO</p>
-            <p class="phone">11 98762-6919</p>
-          </div>
-          <div class="members tall">
-            Eduarda Klapper Boggiani<br>
-            Giulia Mello<br>
-            Helena Carneiro<br>
-            Helena Duarte<br>
-            João Pedro Poit<br>
-            Marcello Binoto<br>
-            Maria Gabriela Medeiros von Adamek<br>
-            Mariana Ferreira Costa
-          </div>
+          <div class="card"><p class="name">THOMAZ ARRUDA</p><p class="role">DIRETOR ADMINISTRATIVO</p><p class="phone">11 98762-6919</p></div>
+          <div class="members tall">Eduarda Klapper Boggiani<br>Giulia Mello<br>Helena Carneiro<br>Helena Duarte<br>João Pedro Poit<br>Marcello Binoto<br>Maria Gabriela Medeiros von Adamek<br>Mariana Ferreira Costa</div>
         </div>
 
         <div class="person p-dir4 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/rafael_fernandez.jpg' %}" alt="Rafael Fernandez">
-          <div class="card">
-            <p class="name">RAFAEL FERNANDEZ</p>
-            <p class="role">DIRETOR DO CÓDIGO SOCIAL</p>
-            <p class="phone">11 96319-5225</p>
-          </div>
+          <div class="card"><p class="name">RAFAEL FERNANDEZ</p><p class="role">DIRETOR DO CÓDIGO SOCIAL</p><p class="phone">11 96319-5225</p></div>
         </div>
 
         <div class="person p-dir5 hidden-element">
           <img class="avatar" src="{% static 'imgs/gestao/henrique.jpg' %}" alt="Henrique Martins">
-          <div class="card">
-            <p class="name">HENRIQUE MARTINS</p>
-            <p class="role">DIRETOR DE PROJETOS</p>
-            <p class="phone">11 99897-2005</p>
-          </div>
-          <div class="members tall">
-            Ana Beatriz Mamede Pampalon, Ana Luisa Marinato Aguiar Alves, André Nakano Miyake,  Beatriz Neves de Oliveira, Bianca Peixoto, Brenda Nicolle Peñaloza Lira, Bruna Sanches Paloni, Bruno Luppi Mancinelli, Carolina Scilingo, Carolina Tsuda Nogueira, Dante Namba Varella, David Drummond Wainstein, Eduarda Klapper Boggiani, Emily Braun, Felipe Godoy, Felippo Cavichioli Veiga, Giulia Mello, Graziele Rodrigues da Silva, Guilherme Lima, Gustavo Chang, Gustavo Frug Mauro, Helena Carneiro, Helena Duarte, Igor Togo Toledo Higuchi, José Vitor da Silva Félix, Júlia Balarin Graziani, Júlia Simões, Julia Spina, Manuela Ferrari Constantino, Maria Eduarda Taveiros Martins Costa, Maria Vitória de Moura Coutinho, Marina Tudisco, Matheus Busnardo, Thomaz Arruda, Yunes Natal
-          </div>
+          <div class="card"><p class="name">HENRIQUE MARTINS</p><p class="role">DIRETOR DE PROJETOS</p><p class="phone">11 99897-2005</p></div>
+          <div class="members tall">Ana Beatriz Mamede Pampalon, Ana Luisa Marinato Aguiar Alves, André Nakano Miyake, Beatriz Neves de Oliveira, Bianca Peixoto, Brenda Nicolle Peñaloza Lira, Bruna Sanches Paloni, Bruno Luppi Mancinelli, Carolina Scilingo, Carolina Tsuda Nogueira, Dante Namba Varella, David Drummond Wainstein, Eduarda Klapper Boggiani, Emily Braun, Felipe Godoy, Felippo Cavichioli Veiga, Giulia Mello, Graziele Rodrigues da Silva, Guilherme Lima, Gustavo Chang, Gustavo Frug Mauro, Helena Carneiro, Helena Duarte, Igor Togo Toledo Higuchi, José Vitor da Silva Félix, Júlia Balarin Graziani, Júlia Simões, Julia Spina, Manuela Ferrari Constantino, Maria Eduarda Taveiros Martins Costa, Maria Vitória de Moura Coutinho, Marina Tudisco, Matheus Busnardo, Thomaz Arruda, Yunes Natal</div>
         </div>
 
       </section>
@@ -160,18 +205,11 @@
 
   <footer class="footer">
     <p>© 2026 Healthtech Júnior Einstein | Todos direitos reservados</p>
-
     <div class="social-links">
-      <a href="https://www.instagram.com/einstein_coding" target="_blank" aria-label="Instagram">
-        <img src="{% static 'imgs/instagram.svg' %}" alt="Instagram">
-      </a>
-      <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
-        <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
-      </a>
+      <a href="https://www.instagram.com/einstein_coding" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
+      <a href="https://www.linkedin.com/company/einsteincoding/" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
     </div>
-
-    <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
+    <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP</p>
   </footer>
-
 </body>
 </html>
