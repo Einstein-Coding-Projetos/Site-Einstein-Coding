@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import News, Project, CodigoSocialCard, HealthcareJuniorCard
+from .models import News, Project, CodigoSocialCard, HealthcareJuniorCard, Product
 from django.db.models import Q
 
 def home(request):
@@ -58,4 +58,7 @@ def gestao(request):
     return render(request, "gestao.html")
 
 def codigo_loja(request):
-    return render(request, 'loja.html')
+    products = Product.objects.filter(is_active=True)
+    return render(request, 'loja.html', {
+        'products': products
+    })

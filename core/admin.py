@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import News, Project, CodigoSocialCard, HealthcareJuniorCard
+from .models import News, Project, CodigoSocialCard, HealthcareJuniorCard, Product
+
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
@@ -22,4 +23,10 @@ class CodigoSocialCardAdmin(admin.ModelAdmin):
 class HealthcareJuniorCardAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'is_active', 'created_at')
     list_filter = ('status', 'is_active')
+    search_fields = ('title', 'description')
+    
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('title', 'price', 'is_active', 'created_at')
+    list_filter = ('is_active',)
     search_fields = ('title', 'description')

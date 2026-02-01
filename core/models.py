@@ -121,3 +121,33 @@ class HealthcareJuniorCard(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Product(models.Model):
+    title = models.CharField("Nome do produto", max_length=120)
+    description = models.TextField("Descrição")
+    price = models.DecimalField("Preço", max_digits=8, decimal_places=2)
+    
+    image = models.ImageField(
+        "Imagem do produto",
+        upload_to="products/",
+        blank=True,
+        null=True
+    )
+
+    link = models.URLField(
+        "Link externo (opcional)",
+        blank=True,
+        null=True,
+        help_text="Link para pagamento, WhatsApp, etc."
+    )
+
+    is_active = models.BooleanField("Ativo", default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Produto"
+        verbose_name_plural = "Produtos"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title
