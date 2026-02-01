@@ -1,0 +1,1102 @@
+/* =========================
+   RESET GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+/* =========================
+    BODY
+========================= */
+html,
+body {
+    min-height: 100%;
+}
+
+html {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(110, 170, 235, 0.75),
+            rgba(170, 145, 215, 0.75)
+        ),
+        url("../imgs/logo-pattern.png");
+
+    background-repeat: repeat;
+    background-size: auto, 280px;
+    background-attachment: fixed;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    line-height: 1.6;
+
+    background: none !important;
+}
+
+/* =========================
+    NAVBAR
+========================= */
+.navbar {
+    /* Relative para sumir ao dar scroll */
+    position: relative;
+    z-index: 100;
+
+    background-color: transparent;
+    background-image: url("../imgs/background-pattern.png");
+    background-repeat: repeat;
+    background-size: 280px;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    padding: 25px 40px;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 45px;
+}
+
+.navbar-links.left {
+    justify-content: flex-start;
+}
+
+.navbar-links.right {
+    justify-content: flex-end;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Teko', sans-serif;
+    font-size: 23px; /* Fonte dos links maior */
+    letter-spacing: 2px; /* Mais espaço entre as letras */
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #d1c4e9; /* Efeito leve ao passar o mouse */
+}
+
+.navbar-center {
+    text-align: center;
+}
+
+.navbar-center .brand {
+    color: white;
+    text-decoration: none;
+    font-family: 'Teko', sans-serif;
+    font-size: 34px; /* Aumentei levemente o logo central */
+    line-height: 0.85; /* Ajuste para as duas linhas ficarem próximas e elegantes */
+    letter-spacing: 3px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* =========================
+    HERO / TOPO
+========================= */
+.hero {
+    height: 90vh;
+    background-color: transparent; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+  
+.hero h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 90px; /* Teko é condensada, pode abusar do tamanho */
+    font-weight: 600;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+  
+.hero p {
+    font-size: 28px; /* Rajdhani precisa ser um pouco maior */
+    margin-top: 10px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+/* =========================
+    SEÇÕES
+========================= */
+section {
+    padding: 10px 15px;
+}
+  
+/* =========================
+    TÍTULOS GERAIS
+========================= */
+section h2 {
+    font-family: 'Teko', sans-serif;
+    font-size: 52px;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+  
+/* =========================
+    GRID DE NOTÍCIAS
+========================= */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.breaking-news,
+.latest-news {
+    background-color: transparent;
+}
+  
+/* =========================
+    CARD DE NOTÍCIA
+========================= */
+.news-card {
+    background-color: royalblue;
+    color: white;
+    border-radius: 8px; /* Bordas menos arredondadas combinam mais com Teko */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+  
+.news-card:hover {
+    transform: translateY(-8px);
+}
+  
+.news-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+  
+.news-card h3,
+.news-card h4 {
+    font-family: 'Teko', sans-serif;
+    font-size: 32px; /* Títulos maiores */
+    margin: 20px 20px 5px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+  
+.news-card p {
+    font-size: 19px; /* Texto legível */
+    margin: 0 20px 20px;
+    line-height: 1.4;
+}
+  
+.read-more {
+    margin: 0 20px 24px;
+    text-decoration: none;
+    color: royalblue;
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    align-self: flex-start;
+}
+  
+.news-card:not(:has(img)) {
+    padding-top: 10px;
+}
+  
+/* =========================
+    SOBRE NÓS
+========================= */
+.about {
+    background-color: transparent;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 50px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Destaque para o texto introdutório do Sobre Nós */
+.intro-text {
+    font-size: 21px;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+.about-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+    font-size: 19px;
+}
+
+.about-columns > div {
+    padding: 28px 26px;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+  
+.about h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.about-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.about-title h3 {
+    margin: 0;
+}
+
+.about-title img {
+    width: 42px;      /* ajuste fino se quiser */
+    height: auto;
+    opacity: 0.9;
+}
+ 
+.about-columns img {
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+}
+
+/* =========================
+    FOOTER
+========================= */
+.footer {
+    background-color: transparent;
+    text-align: center;
+    padding: 30px;
+    font-size: 17px;
+    opacity: 0.95;
+}
+  
+/* =========================
+    RESPONSIVO
+========================= */
+@media (max-width: 900px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+  
+    .about-columns {
+        grid-template-columns: 1fr;
+    }
+  
+    .hero h1 {
+        font-size: 60px;
+    }
+  
+    section {
+        padding: 60px 30px;
+    }
+}
+
+/* =========================
+    REDES SOCIAIS
+========================= */
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.85;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-links a img:hover {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+/* =========================
+    IMAGEM BREAKING NEWS
+========================= */
+.breaking-title {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center; 
+}
+
+.breaking-title img {
+    max-width: 320px; 
+    width: 100%;
+    height: auto;
+}
+/* ===== PÁGINA DE NOTÍCIAS ===== */
+
+.noticias-header {
+    max-width: 900px;
+    margin: 40px auto 50px;
+    text-align: center;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 22px;
+    padding: 36px 32px;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+.noticias-header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 64px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.noticias-header p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+
+.noticias-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+
+/* TAG */
+.tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #00bcd4, #6a1b9a);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 6px;
+}
+
+
+/* LISTA */
+.lista-noticias {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-noticia {
+    display: flex;
+    gap: 16px;
+
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 16px;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-noticia:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.25);
+}
+
+.card-noticia img {
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card-noticia:hover img {
+    transform: scale(1.05);
+}
+
+
+.card-noticia h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    margin: 6px 0;
+    letter-spacing: 0.5px;
+}
+
+.card-noticia p {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.4;
+}
+
+
+/* ===== PÁGINA NOTÍCIAS ===== */
+.noticias-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+/* Cabeçalho */
+.noticias-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.noticias-header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 58px;
+    letter-spacing: 2px;
+}
+
+.noticias-header p {
+    font-size: 22px;
+    opacity: 0.85;
+}
+
+/* Filtros */
+.noticias-filtros {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.noticias-filtros input,
+.noticias-filtros select {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12);
+    color: lavender;
+    backdrop-filter: blur(10px);
+}
+
+.noticias-filtros input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.noticias-filtros button {
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: none;
+    background: #00bcd4;
+    color: #111;
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.noticias-filtros button:hover {
+    opacity: 0.9;
+}
+
+/* Cards */
+.card-noticia {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* =========================
+   HEADER + FILTRO NOTÍCIAS
+========================= */
+
+.noticias-header {
+    max-width: 900px;
+    margin: 40px auto 50px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 24px;
+    padding: 40px 36px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.noticias-header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 56px;          
+    letter-spacing: 2.5px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.noticias-header p {
+    font-family: 'Teko', sans-serif;
+    font-size: 26px;          
+    letter-spacing: 1px;
+    opacity: 0.95;
+    margin-bottom: 30px;
+}
+
+
+/* FILTRO */
+.noticias-filtro {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.noticias-filtro input,
+.noticias-filtro select {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12);
+    color: lavender;
+    font-size: 15px;
+    outline: none;
+    min-width: 200px;
+}
+
+.noticias-filtro input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.noticias-filtro select option {
+    color: #333;
+}
+
+.noticias-filtro button {
+    padding: 10px 26px;
+    border-radius: 14px;
+    border: none;
+
+    background: linear-gradient(135deg, #00bcd4, #6a1b9a);
+    color: lavender;
+
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.noticias-filtro button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+    .noticias-header h1 {
+        font-size: 54px;
+    }
+
+    .noticias-filtro {
+        gap: 10px;
+    }
+
+    .noticias-filtro input,
+    .noticias-filtro select {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+/* =========================
+   OUTRAS NOTÍCIAS (CTA)
+========================= */
+.outras-noticias {
+    text-align: center;
+}
+
+.outras-noticias-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.outras-noticias .intro-text {
+    font-size: 21px;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Link estilizado como destaque */
+.link-destaque {
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 2px solid royalblue;
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.link-destaque:hover {
+    opacity: 0.7;
+    border-color: transparent;
+}
+
+.codigo-social-cards {
+    padding: 0 60px 30px;
+}
+
+
+.codigo-social-cards h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.cards-grid {
+    margin-top: 30px;
+    gap: 30px;
+}
+
+
+
+.card {
+    background: rgba(255, 255, 255, 0.12); /* vidro */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: royalblue;
+    padding: 26px 26px;
+    border-radius: 18px;
+    max-width: 720px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+
+.card h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+    line-height: 1.05;
+}
+
+
+
+.card p {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 400;
+    opacity: 0.95;
+    margin-bottom: 20px;
+}
+
+
+
+
+.card .btn {
+    display: inline-block;
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: lavender;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid rgba(255,255,255,0.8);
+    background: none;
+}
+
+.card .btn:hover {
+    opacity: 0.75;
+}
+
+
+.card .btn:hover {
+    opacity: 0.9;
+}
+
+.card .status {
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.card,
+.card * {
+    text-transform: none;
+}
+
+.contribuicao {
+    margin-bottom: 0;
+    font-size: 21px;
+}
+
+/* =========================
+   GLASSMORPHISM BASE
+========================= */
+.glass {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.18);
+    color: royalblue;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: white;
+}
+
+.news-card {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: royalblue;
+}
+
+.news-card h3,
+.news-card h4 {
+    color: white;
+}
+
+.news-card p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* =========================
+   DETALHE DA NOTÍCIA
+========================= */
+
+.news-detail {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 40px 50px;
+
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.news-detail h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.news-detail .date {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+.news-detail img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin: 25px 0;
+}
+
+.news-detail p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.news-external-link {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 12px 22px;
+
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+
+    color: #00e5ff;
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    border-radius: 14px;
+
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.news-external-link:hover {
+    background: rgba(0, 229, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* botão voltar */
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+
+    font-family: 'Teko', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: white;
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid white;
+}
+
+.back-link:hover {
+    opacity: 0.7;
+}
+
+/* =========================================
+   MELHORIAS VISUAIS (FIM DA MONOTONIA)
+   ========================================= */
+
+/* 1. Animação suave ao carregar a página */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero, .about, .cards-grid, .news-grid {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 2. Efeito de "Levantar" e Brilho nos Cards (Hover) */
+.card, .news-card, .project-card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil inicial */
+}
+
+.card:hover, .news-card:hover, .project-card:hover {
+    transform: translateY(-10px); /* Sobe um pouco */
+    box-shadow: 0 10px 20px rgba(65, 105, 225, 0.2); /* Sombra Azul */
+    border-color: #4169e1; /* Borda fica azul */
+}
+
+/* 3. Botões mais interativos */
+.btn, .btn-outline {
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn:active, .btn-outline:active {
+    transform: scale(0.95); /* Clique satisfatório */
+}
+
+
+/* =========================================
+   ADAPTAÇÃO MOBILE (RESPONSIVIDADE)
+   ========================================= */
+
+@media screen and (max-width: 768px) {
+
+    /* --- Navbar --- */
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        height: auto; /* Remove altura fixa */
+    }
+
+    .navbar-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 10px 0;
+    }
+    
+    .navbar-center {
+        margin: 10px 0;
+        order: -1; /* Logo vai para o topo no mobile */
+    }
+
+    .brand {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+        height: auto;
+        padding: 100px 20px 60px 20px; /* Mais espaço no topo */
+    }
+
+    .hero h1 {
+        font-size: 3rem; /* Fonte menor para não quebrar */
+        line-height: 1.1;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+    }
+
+    /* --- Grids (Transforma colunas em lista única) --- */
+    .about-columns, 
+    .cards-grid, 
+    .news-grid, 
+    .projects-grid,
+    .contribuicao-columns {
+        display: grid;
+        grid-template-columns: 1fr !important; /* Força 1 coluna */
+        gap: 30px;
+    }
+
+    /* --- Ajustes Gerais de Espaçamento --- */
+    .home-section, section {
+        padding: 40px 15px !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .intro-text {
+        font-size: 1.1rem;
+        text-align: justify; /* Texto justificado fica melhor em mobile */
+    }
+
+    /* --- Imagens --- */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Ajuste específico para as imagens de gestão/equipe se houver */
+    .gestao-grid {
+         grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
+   MENU HAMBÚRGUER (MOBILE - VERSÃO BLINDADA)
+========================= */
+
+/* 1. Esconde o botão no Desktop */
+.hamburger-menu {
+    display: none;
+}
+
+/* 2. Regras APENAS para telas menores que 768px */
+@media screen and (max-width: 768px) {
+    
+    /* Força o Header a aceitar o menu */
+    .navbar {
+        display: flex !important; /* Remove o Grid à força */
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 20px !important;
+        position: relative;
+        /* Fundo escuro sólido para garantir leitura */
+        background: #141428 !important; 
+        min-height: 80px; /* Garante altura mínima para o botão caber */
+    }
+
+    /* Estilo do Botão Hambúrguer */
+    .hamburger-menu {
+        display: flex !important;
+        flex-direction: column;
+        gap: 6px;
+        
+        /* Posicionamento Absoluto "Flutuante" */
+        position: absolute;
+        top: 25px;   /* Ajustado para alinhar com a logo */
+        right: 20px; /* Canto direito */
+        
+        /* Z-Index Extremo para ficar acima de tudo */
+        z-index: 9999 !important; 
+        cursor: pointer;
+        
+        /* Área de clique aumentada */
+        padding: 5px;
+    }
+
+    /* As barrinhas brancas */
+    .hamburger-menu .bar {
+        width: 32px;
+        height: 3px;
+        background-color: #ffffff !important;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Sombra para destacar do fundo */
+    }
+
+    /* Logo Centralizada */
+    .navbar-center {
+        order: -1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+        z-index: 100; /* Menor que o menu */
+    }
+    
+    .navbar-center .brand {
+        font-size: 26px;
+        display: block; /* Garante que ocupe a linha */
+    }
+
+    /* Esconde os links inicialmente */
+    .navbar-links {
+        display: none !important; /* Garante que sumam */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 15px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Quando clicar (JS ativa esta classe) */
+    .navbar.active .navbar-links {
+        display: flex !important;
+        animation: fadeInUp 0.4s ease forwards;
+    }
+
+    .navbar-links a {
+        font-size: 22px;
+        padding: 12px;
+        display: block;
+        color: #fff !important;
+    }
+}

@@ -1086,3 +1086,90 @@ section h2 {
     text-decoration: none;
     border-bottom: 2px solid white;
 }
+
+/* 1. Esconde o botão no Desktop */
+.hamburger-menu {
+    display: none;
+}
+
+/* 2. Regras APENAS para telas menores que 768px */
+@media screen and (max-width: 768px) {
+    
+    /* Força o Header a aceitar o menu */
+    .navbar {
+        display: flex !important; /* Remove o Grid à força */
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 20px !important;
+        position: relative;
+        /* Fundo escuro sólido para garantir leitura */
+        background: #141428 !important; 
+        min-height: 80px; /* Garante altura mínima para o botão caber */
+    }
+
+    /* Estilo do Botão Hambúrguer */
+    .hamburger-menu {
+        display: flex !important;
+        flex-direction: column;
+        gap: 6px;
+        
+        /* Posicionamento Absoluto "Flutuante" */
+        position: absolute;
+        top: 25px;   /* Ajustado para alinhar com a logo */
+        right: 20px; /* Canto direito */
+        
+        /* Z-Index Extremo para ficar acima de tudo */
+        z-index: 9999 !important; 
+        cursor: pointer;
+        
+        /* Área de clique aumentada */
+        padding: 5px;
+    }
+
+    /* As barrinhas brancas */
+    .hamburger-menu .bar {
+        width: 32px;
+        height: 3px;
+        background-color: #ffffff !important;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Sombra para destacar do fundo */
+    }
+
+    /* Logo Centralizada */
+    .navbar-center {
+        order: -1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+        z-index: 100; /* Menor que o menu */
+    }
+    
+    .navbar-center .brand {
+        font-size: 26px;
+        display: block; /* Garante que ocupe a linha */
+    }
+
+    /* Esconde os links inicialmente */
+    .navbar-links {
+        display: none !important; /* Garante que sumam */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 15px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Quando clicar (JS ativa esta classe) */
+    .navbar.active .navbar-links {
+        display: flex !important;
+        animation: fadeInUp 0.4s ease forwards;
+    }
+
+    .navbar-links a {
+        font-size: 22px;
+        padding: 12px;
+        display: block;
+        color: #fff !important;
+    }
+}

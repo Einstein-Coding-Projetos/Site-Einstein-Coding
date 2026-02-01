@@ -3,6 +3,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nossos Serviços - HJE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,48 +11,136 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <style>
+        #mobile-header-overlay { display: none !important; }
+        #desktop-original-header { display: grid !important; } 
+        #mobile-spacer { display: none; height: 80px; }
 
-    <header class="navbar">
-        <nav class="navbar-links left">
+        /* REGRAS APENAS PARA CELULAR (Mobile < 950px) */
+        @media screen and (max-width: 950px) {
+            /* 1. Esconde Header Desktop */
+            #desktop-original-header { display: none !important; }
+            
+            /* 2. Header Mobile (Estilo Vidro) */
+            #mobile-header-overlay { 
+                display: flex !important; flex-direction: column; width: 100%;
+                position: fixed; top: 0; left: 0; z-index: 9999999;
+                
+                /* Fundo transparente (vidro) - IGUAL ÀS CAIXAS */
+                background: rgba(255, 255, 255, 0.05) !important; 
+                backdrop-filter: blur(15px) !important;
+                -webkit-backdrop-filter: blur(15px);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+            #mobile-spacer { display: block; }
+
+            /* 3. Ajustes Gerais de Layout Mobile (Margens e Colunas) */
+            .about, .home-section, .card, .news-card, .project-card, .glass, 
+            .noticias-header, .news-detail, .projetos-grid, .gestao-card, section, 
+            .produtos-a-venda, .latest-news, .noticias-container, .contribuicao {
+                padding: 25px 20px !important;
+                margin-left: 0 !important; margin-right: 0 !important;
+                width: auto !important; max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Força colunas únicas nas grids */
+            .cards-grid, .news-grid, .projects-grid, .product-grid, 
+            .about-columns, .lista-noticias, .contribuicao-columns {
+                display: flex !important; flex-direction: column !important; gap: 25px !important;
+                width: 100% !important; padding: 0 !important;
+            }
+
+            /* Ajustes Específicos para centralizar cards */
+            .card-noticia, .news-card, .project-card, .caixa-de-compras {
+                width: 90% !important; margin: 0 auto !important;
+            }
+            
+            /* Ajuste de Filtro de Notícias */
+            .noticias-header { text-align: center !important; width: 92% !important; margin: 0 auto !important; }
+            .noticias-filtro { width: 100% !important; display: flex !important; flex-direction: column !important; gap: 10px !important; }
+            .noticias-filtro input, .noticias-filtro select, .noticias-filtro button { width: 100% !important; margin: 0 !important; }
+
+            /* Ajuste de Fontes */
+            h1, .hero h1 { font-size: 3.2rem !important; line-height: 1.1; } 
+            h2 { font-size: 2.2rem !important; }
+
+            /* 4. Estilos do Topo Mobile */
+            .mob-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 25px; height: 80px; }
+            
+            /* LOGO SEM TEXTO */
+            .mob-logo { 
+                display: flex; align-items: center; 
+                gap: 1px; /* Gap ajustado */
+                text-decoration: none; 
+            }
+            
+            .mob-logo img { 
+                height: 65px; /* Tamanho ajustado */
+                width: auto; 
+                filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); 
+            }
+
+            .mob-btn { width: 30px; height: 22px; display: flex; flex-direction: column; justify-content: space-between; background: none; border: none; padding: 0; cursor: pointer; }
+            .mob-btn span { display: block; width: 100%; height: 3px; background: #fff; border-radius: 4px; transition: 0.3s; }
+            
+            /* Menu Aberto (Gaveta) */
+            .mob-links { 
+                background: rgba(255, 255, 255, 0.05); /* Fundo vidro */
+                backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+                width: 100%; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; 
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .mob-links.open { max-height: 100vh; overflow-y: auto; }
+            .mob-links a { padding: 20px 0; text-align: center; color: #fff; display: block; font-family: 'Teko', sans-serif; font-size: 24px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            
+            /* Animação do X */
+            .mob-btn.active span:nth-child(1) { transform: translateY(9.5px) rotate(45deg); } 
+            .mob-btn.active span:nth-child(2) { opacity: 0; } 
+            .mob-btn.active span:nth-child(3) { transform: translateY(-9.5px) rotate(-45deg); }
+        }
+    </style>
+
+    <div id="mobile-header-overlay">
+        <div class="mob-top">
+            <a href="/" class="mob-logo">
+                <img src="{% static 'imgs/HJE.png' %}" alt="HJE Logo">
+                </a>
+            <button class="mob-btn" onclick="this.classList.toggle('active'); document.getElementById('mobMenuOverlay').classList.toggle('open');">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <nav class="mob-links" id="mobMenuOverlay">
+            <a href="/">Início</a>
             <a href="/sobre-nos/">Sobre nós</a>
             <a href="/projetos/">Nossos Projetos</a>
-            <a href="/servicos/" class="active">Nossos Serviços</a>
-        </nav>
-        <div class="navbar-center">
-            <a href="/" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a>
-        </div>
-        <nav class="navbar-links right">
+            <a href="/servicos/">Nossos Serviços</a>
             <a href="/codigo-social/">Código Social</a>
             <a href="/noticias/">Notícias</a>
+            <a href="/loja/">Loja</a>
             <a href="/gestao/">Gestão</a>
         </nav>
+    </div>
+    <div id="mobile-spacer"></div>
+
+    <header id="desktop-original-header" class="navbar">
+        <nav class="navbar-links left"><a href="/sobre-nos/">Sobre nós</a><a href="/projetos/">Nossos Projetos</a><a href="/servicos/" class="active">Nossos Serviços</a></nav>
+        <div class="navbar-center"><a href="/" class="brand">HEALTHTECH JUNIOR<br>EINSTEIN</a></div>
+        <nav class="navbar-links right"><a href="/codigo-social/">Código Social</a><a href="/noticias/">Notícias</a><a href="/gestao/">Gestão</a></nav>
     </header>
 
-    <section class="hero" style="height: 50vh;">
-        <h1>Parcerias e Serviços</h1>
-        <p>Conecte-se com a inovação</p>
-    </section>
+    <section class="hero" style="height: 50vh;"><h1>Parcerias e Serviços</h1><p>Conecte-se com a inovação</p></section>
 
     <section class="about" style="text-align: center; min-height: 300px;">
         <h2>Fale Conosco</h2>
-        
-        <p class="intro-text" style="max-width: 800px; margin: 40px auto;">
-            Caso possua interesse e tenha a intenção de fechar uma parceria, contrato ou serviço com a gente, entre em contato pelo seguinte e-mail:
-        </p>
-        
-        <div style="margin: 40px 0;">
-            <a href="mailto:einstein.coding@outlook.com" class="btn" style="background-color: #004aad; color: white; padding: 20px 40px; font-size: 1.2rem; text-decoration: none; border-radius: 8px;">
-                einstein.coding@outlook.com
-            </a>
-        </div>
+        <p class="intro-text" style="max-width: 800px; margin: 40px auto;">Caso possua interesse e tenha a intenção de fechar uma parceria, contrato ou serviço com a gente, entre em contato pelo seguinte e-mail:</p>
+        <div style="margin: 40px 0;"><a href="mailto:einstein.coding@outlook.com" class="btn" style="background-color: #004aad; color: white; padding: 20px 40px; font-size: 1.2rem; text-decoration: none; border-radius: 8px;">einstein.coding@outlook.com</a></div>
     </section>
 
     <footer class="footer">
         <p>© 2026 Healthtech Junior Einstein | Todos direitos reservados</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
-            <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
-        </div>
+        <div class="social-links"><a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a><a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a></div>
         <p>Email: einstein.coding@outlook.com</p>
     </footer>    
 </body>
