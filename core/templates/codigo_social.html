@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'imgs/HJE2.ico' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
     body {
@@ -176,8 +178,8 @@
     </section>
 
     <section id="sobre-projeto" class="about">
-        <h2>Sobre o Projeto</h2>
-        <p class="intro-text">
+        <h2 data-aos="fade-in">Sobre o Projeto</h2>
+        <p class="intro-text" data-aos="fade-left">
             É o braço social da Healthtech Júnior Einstein, voltado ao ensino de programação 
             para pessoas em situação de vulnerabilidade, com o objetivo de promover inclusão e gerar 
             novas oportunidades profissionais. 
@@ -186,10 +188,10 @@
         <div class="about-columns">
             <div>
                 <div class="about-title">
-                    <h3>Missão</h3>
-                    <img src="{% static 'imgs/missao.png' %}" alt="Missão">
+                    <h3 data-aos="fade-up">Missão</h3>
+                    <img src="{% static 'imgs/missao.png' %}" alt="Missão" data-aos="fade-right">
                 </div>
-                <p>Oferecer educação tecnológica de qualidade para quem mais precisa, 
+                <p data-aos="fade-left">Oferecer educação tecnológica de qualidade para quem mais precisa, 
                 reduzindo o abismo digital na nossa sociedade. Em uma parceria com o Ensino EINSTEIN, 
                 serão ministradas aulas de programação para alunos do ensino médio técnico (ETIM) 
                 da instituição.</p>
@@ -197,23 +199,23 @@
 
             <div>
                 <div class="about-title">
-                    <h3>Visão</h3>
+                    <h3 data-aos="fade-up">Visão</h3>
                     <img src="{% static 'imgs/visao.png' %}" alt="Visão">
                 </div>
-                <p>Ser um projeto modelo de ensino voluntário de programação, 
+                <p data-aos="fade-left">Ser um projeto modelo de ensino voluntário de programação, 
                 formando jovens capazes de criar suas próprias soluções.</p>
             </div>
 
             <div>
                 <div class="about-title">
-                    <h3>Valores</h3>
-                    <img src="{% static 'imgs/valores.png' %}" alt="Valores">
+                    <h3 data-aos="fade-up">Valores</h3>
+                    <img src="{% static 'imgs/valores.png' %}" alt="Valores" data-aos="fade-right">
                 </div>
                 <ul>
-                    <li>Empatia</li>
-                    <li>Inclusão</li>
-                    <li>Educação</li>
-                    <li>Voluntariado</li>
+                    <li data-aos="fade-left">Empatia</li>
+                    <li data-aos="fade-left">Inclusão</li>
+                    <li data-aos="fade-left">Educação</li>
+                    <li data-aos="fade-left">Voluntariado</li>
                 </ul>
             </div>
         </div>
@@ -222,8 +224,8 @@
     <section id="como-contribuir" class="contribuicao" style="padding-top: 0;">
         <div class="contribuicao-columns" style="grid-template-columns: 1fr;">
             <div>
-                <h2>Contribuição</h2>
-                <p>Seja um professor! Exclusivo para alunos da FICSAE.
+                <h2 data-aos="fade-in">Contribuição</h2>
+                <p data-aos="fade-left">Seja um professor! Exclusivo para alunos da FICSAE.
                    Link de inscrição aberto somente durante os períodos de seleção.</p>
             </div>
         </div>
@@ -257,10 +259,23 @@
         <div class="social-links">
             <a href="https://www.instagram.com/healthtechjr.einstein/" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
             <a href="https://www.linkedin.com/company/einsteincoding/" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
+            <a href="https://github.com/Einstein-Coding-Projetos" target="_blank" aria-label="GitHub">
+                <img src="{% static 'imgs/github.svg' %}" alt="GitHub" style="filter: brightness(0) invert(1);"> 
+            </a>
         </div>
         <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
             <p>Email: einstein.coding@outlook.com</p>
     </footer>    
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 2500, /* Duração da animação em ms */
+        once: true,  /* Animação ocorre apenas uma vez ao rolar */
+        mirror: true, /* Animação repete ao rolar para cima */
+        disable: 'mobile' /* Desabilita animações em dispositivos móveis */
+    });
+    </script>
 
 </body>
 </html>

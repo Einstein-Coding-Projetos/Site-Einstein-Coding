@@ -1179,3 +1179,321 @@ section h2 {
         color: #fff !important;
     }
 }
+
+/* =========================
+   BENTO GRID SYSTEM
+========================= */
+.bento-grid {
+    display: grid;
+    /* Coluna 1 (Destaque) ocupa 1.5x o espaço da Coluna 2 */
+    grid-template-columns: 1.5fr 1fr; 
+    /* Altura fixa para garantir o formato do grid */
+    grid-template-rows: 250px 250px; 
+    gap: 20px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* O CARD (Base) */
+.bento-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    /* Vidro escuro/moderno */
+    background: rgba(20, 20, 35, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    align-items: flex-end; /* Conteúdo no fundo */
+}
+
+.bento-card:hover {
+    transform: scale(1.02);
+    border-color: #4169e1; /* Azul da sua marca */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* O PRIMEIRO ITEM (Destaque - Lado Esquerdo Inteiro) */
+.bento-card.destaque {
+    grid-column: 1 / 2; /* Fica na coluna 1 */
+    grid-row: 1 / 3;    /* Ocupa da linha 1 até a 3 (ou seja, 2 linhas inteiras) */
+}
+
+/* IMAGEM DE FUNDO (Com Overlay escuro para ler o texto) */
+.bento-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Deixa escura para o texto brilhar */
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    z-index: 0;
+}
+
+.bento-card:hover .bento-bg {
+    opacity: 0.7; /* Clareia ao passar o mouse */
+    transform: scale(1.05); /* Zoom suave na imagem */
+}
+
+/* CONTEÚDO (Texto sobre a imagem) */
+.bento-content {
+    position: relative;
+    z-index: 2;
+    padding: 25px;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.bento-content h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 32px;
+    margin-bottom: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.bento-content p {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.btn-arrow {
+    color: #4169e1;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   RESPONSIVO (Celular vira lista normal)
+========================= */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr; /* 1 Coluna só */
+        grid-template-rows: auto;   /* Altura automática */
+        height: auto;
+    }
+
+    .bento-card.destaque {
+        grid-column: auto;
+        grid-row: auto;
+        height: 300px; /* Altura fixa no mobile */
+    }
+
+    .bento-card {
+        height: 250px; /* Altura dos menores no mobile */
+    }
+}
+
+/* GRID UNIFORME (Para o catálogo completo) */
+.projects-grid-uniforme {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsivo automático */
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* CARD MODERNO (Vidro simples) */
+.card-moderno {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-moderno:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-color: #4169e1;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-body h3 {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-family: 'Teko', sans-serif;
+}
+
+.card-body p {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid #4169e1;
+    color: #4169e1;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 14px;
+    transition: 0.3s;
+    text-align: center;
+    width: fit-content;
+}
+
+.btn-outline:hover {
+    background: #4169e1;
+    color: white;
+}
+
+/* =========================
+   MODAL DE VIDRO (POP-UP)
+========================= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Fundo escuro atrás */
+    backdrop-filter: blur(5px); /* Embaça o site atrás */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-glass {
+    background: rgba(25, 25, 40, 0.95); /* Quase sólido para leitura */
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.modal-overlay.active .modal-glass {
+    transform: scale(1); /* Efeito de "Pulo" ao abrir */
+}
+
+.modal-header {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.modal-header::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
+    background: linear-gradient(to top, rgba(25,25,40, 1), transparent);
+}
+
+.modal-body {
+    padding: 30px;
+    color: white;
+}
+
+.modal-body h2 {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.modal-body p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 30px;
+    white-space: pre-wrap; /* Respeita os parágrafos do texto */
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 0.5;
+    text-shadow: 0 2px 5px black;
+}
+
+.modal-cta {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #4169e1;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.modal-cta:hover { background: white; color: #4169e1; }
+
+/* =========================
+   MARCA D'ÁGUA (Ideia da Namorada)
+========================= */
+.hero-watermark {
+    position: relative; /* Necessário para segurar a imagem dentro da área */
+    overflow: hidden;   /* Garante que o logo não vase para fora */
+}
+
+.hero-watermark::before {
+    content: "";
+    position: absolute;
+    
+    /* Centraliza Perfeitamente */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Tamanho do Logo de Fundo */
+    width: 500px;  /* Ajuste esse tamanho se achar pequeno/grande */
+    height: 500px;
+    
+    /* A Imagem */
+    background-image: url('../imgs/HJE.png'); /* Usa o PNG que tem fundo transparente */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* O "Segredo": Bem transparente */
+    opacity: 0.5; /* 8% de opacidade (bem sutil). Tente 0.15 se quiser mais forte */
+    
+    /* Garante que fique atrás do texto */
+    z-index: 0; 
+    pointer-events: none; /* Para não atrapalhar cliques */
+}
+
+/* Importante: Garante que o texto fique NA FRENTE do logo */
+.hero-watermark h1, 
+.hero-watermark p,
+.hero-watermark .btn {
+    position: relative;
+    z-index: 1;
+}

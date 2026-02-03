@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'imgs/HJE2.ico' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         /* CSS ORIGINAL DA PÁGINA (MANTIDO) */
         .home-section {
@@ -153,57 +155,74 @@
         </nav>
     </header>
 
-    <section class="hero" style="height: 60vh; margin-bottom: 40px;">
-        <h1>Healthtech Júnior Einstein </h1> 
-        <p>Onde o código encontra o cuidado</p>
+    <section class="hero hero-watermark" style="height: 60vh; margin-bottom: 40px;">
+        <h1  data-aos="fade-down">Healthtech Júnior Einstein </h1> 
+        <p  data-aos="fade-up">Onde o código encontra o cuidado</p>
     </section>
 
-    <section class="about home-section">
-        <h2>Quem Somos</h2>
-        <p class="intro-text">
+    <section class="about home-section" >
+        <h2 data-aos="fade-in">Quem Somos</h2>
+        <p class="intro-text"  data-aos="fade-left">
             Somos a primeira Empresa Júnior de Engenharia Biomédica focada exclusivamente em desenvolvimento de software e soluções digitais.
             Nascemos para preencher uma lacuna no mercado, unindo a expertise clínica com a programação de alto nível.
         </p>
-        <p class="intro-text">
+        <p class="intro-text"  data-aos="fade-left">
             Seja você um estudante buscando evolução técnica ou um parceiro buscando inovação, a HJE é o lugar onde a tecnologia encontra o propósito.
         </p>
-        <a href="/sobre-nos/" class="btn-outline">Conheça nossa História</a>
+        <a href="/sobre-nos/" class="btn-outline"  data-aos="fade-up">Conheça nossa História</a>
     </section>
 
     <section class="about home-section">
-        <h2>O Que Desenvolvemos</h2>
-        <p style="margin-bottom: 20px;">Confira algumas das soluções que nossa equipe já colocou em prática.</p>
+        <h2  data-aos="fade-in">O Que Desenvolvemos</h2>
+        <p style="margin-bottom: 20px;"  data-aos="fade-left">Confira algumas das soluções que nossa equipe já colocou em prática.</p>
         
-        <div class="projects-grid">
-            {% for project in projects|slice:":3" %}
-            <div class="project-card">
+        <div class="bento-grid">
+            {% for project in recent_projects %}
+            <div class="bento-card {% if forloop.first %}destaque{% endif %}" data-aos="fade-up">
+        
                 {% if project.image %}
-                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    <div class="bento-bg" style="background-image: url('{{ project.image.url }}');"></div>
                 {% endif %}
-                <div class="project-info">
+        
+                <div class="bento-content">
                     <h3>{{ project.title }}</h3>
-                    <p>{{ project.summary|truncatechars:100 }}</p>
+                    <p>
+                        {% if forloop.first %}
+                            {{ project.summary|truncatechars:180 }}
+                        {% else %}
+                            {{ project.summary|truncatechars:60 }}
+                         {% endif %}
+                    </p>
+                    {% if project.link %}
+                        <a href="{{ project.link }}" target="_blank" class="btn-arrow" style="text-decoration: none;">
+                            Acessar Link →
+                        </a>
+                    {% else %}
+                        <a href="{% url 'projetos' %}" class="btn-arrow" style="text-decoration: none;">
+                            Ver Detalhes →
+                        </a>
+                    {% endif %}
                 </div>
             </div>
             {% empty %}
-                <p>Nossa equipe está trabalhando em novidades incríveis.</p>
+                <p data-aos="fade-in">Nossa equipe está trabalhando em novidades incríveis.</p>
             {% endfor %}
         </div>
         
-        <a href="/projetos/" class="btn-outline">Ver Todos os Projetos</a>
+        <a href="/projetos/" class="btn-outline" data-aos="fade-up">Ver Todos os Projetos</a>
     </section>
 
     <section class="about home-section">
-        <h2>Nosso Impacto Social</h2>
-        <p class="intro-text">
+        <h2  data-aos="fade-in">Nosso Impacto Social</h2>
+        <p class="intro-text"  data-aos="fade-left">
             Não somos apenas código. Através do <strong>Código Social</strong>, levamos o ensino de programação para jovens em vulnerabilidade, 
             acreditando que a tecnologia é a maior ferramenta de ascensão social do século XXI.
         </p>
-        <a href="/codigo-social/" class="btn-outline">Conheça o Código Social</a>
+        <a href="/codigo-social/" class="btn-outline" data-aos="fade-up">Conheça o Código Social</a>
     </section>
 
     <section class="about home-section">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Últimas Notícias</h2>
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;"  data-aos="fade-in">Últimas Notícias</h2>
         
         <div class="news-grid">
             {% for news in featured_news %}
@@ -225,7 +244,7 @@
         </div>
 
         <div style="margin-top: 30px;">
-            <p class="intro-text">
+            <p class="intro-text"  data-aos="fade-left">
                 Quer ver tudo o que está acontecendo? 
                 <a href="/noticias/" style="color: #ffffff; text-decoration: underline;">Acesse todas as notícias</a>.
             </p>
@@ -233,8 +252,8 @@
     </section>
 
     <section id="processo-seletivo" class="about home-section">
-        <h2>Faça Parte do Time</h2>
-        <p class="intro-text">
+        <h2  data-aos="fade-in">Faça Parte do Time</h2>
+        <p class="intro-text"  data-aos="fade-left">
             Quer colocar a mão na massa em projetos reais ou liderar iniciativas de Marketing e RH?
             Acompanhe nossos processos seletivos.
         </p>
@@ -277,10 +296,25 @@
             <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
                 <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
             </a>
+
+            <a href="https://github.com/Einstein-Coding-Projetos" target="_blank" aria-label="GitHub">
+                <img src="{% static 'imgs/github.svg' %}" alt="GitHub" style="filter: brightness(0) invert(1);"> 
+            </a>
         </div>
 
         <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
             <p>Email: einstein.coding@outlook.com</p>
     </footer>    
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 2500, /* Duração da animação em ms */
+        once: false,  /* Animação ocorre apenas uma vez ao rolar */
+        mirror: true, /* Animação repete ao rolar para cima */
+        disable: 'mobile' /* Desabilita animações em dispositivos móveis */
+    });
+    </script>
+
 </body>
 </html>

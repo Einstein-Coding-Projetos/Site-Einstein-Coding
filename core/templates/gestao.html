@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/gestao.css' %}">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'imgs/HJE2.ico' %}">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -137,10 +139,10 @@
   <main class="gestao-page">
     <section class="gestao-container">
       <div class="gestao-header hidden-element"> 
-        <h1 class="gestao-title">Nossa gestão</h1>
+        <h1 class="gestao-title" data-aos="fade-in">Nossa gestão</h1>
         <div class="metrics">
-          <div class="metric"><span class="num">42</span><span class="txt">Membros totais</span></div>
-          <div class="metric"><span class="num">36</span><span class="txt">Membros em projetos</span></div>
+          <div class="metric"><span class="num">42</span><span class="txt" data-aos="fade-left">Membros totais</span></div>
+          <div class="metric"><span class="num">36</span><span class="txt" data-aos="fade-left">Membros em projetos</span></div>
         </div>
       </div>
 
@@ -161,41 +163,41 @@
         </svg>
 
         <div class="person p-presidente hidden-element">
-          <img class="avatar" src="{% static 'imgs/gestao/andre.jpg' %}" alt="André Miyake">
-          <div class="card"><p class="name">ANDRÉ MIYAKE</p><p class="role">PRESIDENTE</p><p class="phone">11 98714-1260</p></div>
+          <img class="avatar" src="{% static 'imgs/gestao/andre.jpg' %}" alt="André Miyake" data-aos="fade-in">
+          <div class="card" data-aos="fade-right"><p class="name">ANDRÉ MIYAKE</p><p class="role">PRESIDENTE</p><p class="phone">11 98714-1260</p></div>
         </div>
 
         <div class="person p-vice hidden-element">
-          <img class="avatar" src="{% static 'imgs/gestao/rafael_sender.jpg' %}" alt="Rafael Sender">
-          <div class="card"><p class="name">RAFAEL SENDER</p><p class="role">VICE PRESIDENTE</p><p class="phone">11 96500-8273</p></div>
+          <img class="avatar" src="{% static 'imgs/gestao/rafael_sender.jpg' %}" alt="Rafael Sender" data-aos="fade-in">
+          <div class="card" data-aos="fade-right"><p class="name">RAFAEL SENDER</p><p class="role">VICE PRESIDENTE</p><p class="phone">11 96500-8273</p></div>
         </div>
 
         <div class="person p-dir1 hidden-element">
-          <img class="avatar" src="{% static 'imgs/gestao/bianca.jpg' %}" alt="Bianca Peixoto">
-          <div class="card"><p class="name">BIANCA PEIXOTO</p><p class="role">DIRETORA DE MARKETING</p><p class="phone">11 95281-7886</p></div>
+          <img class="avatar" src="{% static 'imgs/gestao/bianca.jpg' %}" alt="Bianca Peixoto" data-aos="fade-in">
+          <div class="card" data-aos="fade-right"><p class="name">BIANCA PEIXOTO</p><p class="role">DIRETORA DE MARKETING</p><p class="phone">11 95281-7886</p></div>
           <div class="members small">Ana Beatriz Pampalon<br>Brenda Lira<br>Graziele Rodrigues</div>
         </div>
 
         <div class="person p-dir2 hidden-element">
-          <img class="avatar" src="{% static 'imgs/gestao/matheus.jpg' %}" alt="Matheus Busnardo">
-          <div class="card"><p class="name">MATHEUS MOTA B.</p><p class="role">DIRETOR DE RH</p><p class="phone">11 94260-2005</p></div>
+          <img class="avatar" src="{% static 'imgs/gestao/matheus.jpg' %}" alt="Matheus Busnardo" data-aos="fade-in">
+          <div class="card" data-aos="fade-right"><p class="name">MATHEUS MOTA B.</p><p class="role">DIRETOR DE RH</p><p class="phone">11 94260-2005</p></div>
           <div class="members small">Yunes Natal<br>Rian Ryuuichi<br>Carolina Scilingo</div>
         </div>
 
         <div class="person p-dir3 hidden-element">
-          <img class="avatar" src="{% static 'imgs/gestao/rafael_fernandez.jpg' %}" alt="Thomaz Arruda">
-          <div class="card"><p class="name">RAFAEL FERNANDEZ</p><p class="role">DIRETOR DO CÓDIGO SOCIAL</p><p class="phone">11 96319-5225</p></div>
+          <img class="avatar" src="{% static 'imgs/gestao/rafael_fernandez.jpg' %}" alt="Thomaz Arruda" data-aos="fade-in">
+          <div class="card" data-aos="fade-right"><p class="name">RAFAEL FERNANDEZ</p><p class="role">DIRETOR DO CÓDIGO SOCIAL</p><p class="phone">11 96319-5225</p></div>
           <div class="members tall">Eduarda Klapper Boggiani<br>Giulia Mello<br>Helena Carneiro<br>Helena Duarte<br>João Pedro Poit<br>Marcello Binoto<br>Maria Gabriela Medeiros von Adamek<br>Mariana Ferreira Costa</div>
         </div>
 
         <div class="person p-dir4 hidden-element">
-          <img class="avatar" src="{% static 'imgs/gestao/thomaz.jpg' %}" alt="Rafael Fernandez">
-          <div class="card"><p class="name">THOMAZ ARRUDA</p><p class="role">DIRETOR ADMINISTRATIVO</p><p class="phone">11 98762-6919</p></div>
+          <img class="avatar" src="{% static 'imgs/gestao/thomaz.jpg' %}" alt="Rafael Fernandez" data-aos="fade-in">
+          <div class="card" data-aos="fade-right"><p class="name">THOMAZ ARRUDA</p><p class="role">DIRETOR ADMINISTRATIVO</p><p class="phone">11 98762-6919</p></div>
         </div>
 
         <div class="person p-dir5 hidden-element">
-          <img class="avatar" src="{% static 'imgs/gestao/henrique.jpg' %}" alt="Henrique Martins">
-          <div class="card"><p class="name">HENRIQUE MARTINS</p><p class="role">DIRETOR DE PROJETOS</p><p class="phone">11 99897-2005</p></div>
+          <img class="avatar" src="{% static 'imgs/gestao/henrique.jpg' %}" alt="Henrique Martins" data-aos="fade-in">
+          <div class="card" data-aos="fade-right"><p class="name">HENRIQUE MARTINS</p><p class="role">DIRETOR DE PROJETOS</p><p class="phone">11 99897-2005</p></div>
           <div class="members tall">Ana Beatriz Mamede Pampalon, Ana Luisa Marinato Aguiar Alves, André Nakano Miyake, Beatriz Neves de Oliveira, Bianca Peixoto, Brenda Nicolle Peñaloza Lira, Bruna Sanches Paloni, Bruno Luppi Mancinelli, Carolina Scilingo, Carolina Tsuda Nogueira, Dante Namba Varella, David Drummond Wainstein, Eduarda Klapper Boggiani, Emily Braun, Felipe Godoy, Felippo Cavichioli Veiga, Giulia Mello, Graziele Rodrigues da Silva, Guilherme Lima, Gustavo Chang, Gustavo Frug Mauro, Helena Carneiro, Helena Duarte, Igor Togo Toledo Higuchi, José Vitor da Silva Félix, Júlia Balarin Graziani, Júlia Simões, Julia Spina, Manuela Ferrari Constantino, Maria Eduarda Taveiros Martins Costa, Maria Vitória de Moura Coutinho, Marina Tudisco, Matheus Busnardo, Thomaz Arruda, Yunes Natal</div>
         </div>
 
@@ -208,8 +210,22 @@
     <div class="social-links">
       <a href="https://www.instagram.com/einstein_coding" target="_blank"><img src="{% static 'imgs/instagram.svg' %}" alt="Instagram"></a>
       <a href="https://www.linkedin.com/company/einsteincoding/" target="_blank"><img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn"></a>
+      <a href="https://github.com/Einstein-Coding-Projetos" target="_blank" aria-label="GitHub">
+                <img src="{% static 'imgs/github.svg' %}" alt="GitHub" style="filter: brightness(0) invert(1);"> 
+      </a>
     </div>
     <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP</p>
   </footer>
+  
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  AOS.init({
+      duration: 2500, /* Duração da animação em ms */
+      once: false,  /* Animação ocorre apenas uma vez ao rolar */
+      mirror: true, /* Animação repete ao rolar para cima */
+      disable: 'mobile' /* Desabilita animações em dispositivos móveis */
+  });
+  </script>
+
 </body>
 </html>

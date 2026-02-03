@@ -4,7 +4,7 @@ from django.db.models import Q
 
 def home(request):
     # Focando no "Pitch de Elevador" e Projetos, conforme solicitado.
-    recent_projects = Project.objects.filter(is_active=True).order_by('-created_at')[:3]
+    recent_projects = Project.objects.filter(is_active=True).order_by('-is_featured', '-created_at')[:3]
     featured_news = News.objects.filter(is_featured=True).order_by('-created_at')[:3]
 
     # Se quiser passar os cards da Healthcare também (mesmo que não exiba no layout "breve"), 
@@ -35,7 +35,7 @@ def news_detail(request, id):
     return render(request, 'news_detail.html', {'news': news})
 
 def projetos(request):
-    projects = Project.objects.filter(is_active=True).order_by('-created_at')
+    projects = Project.objects.filter(is_active=True).order_by('-is_featured', '-created_at')
     query = request.GET.get('q')
     if query:
         projects = projects.filter(

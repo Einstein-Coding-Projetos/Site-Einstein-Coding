@@ -33,6 +33,7 @@ class Project(models.Model):
     link = models.URLField("Link do Projeto", blank=True, null=True)
     created_at = models.DateTimeField("Data de criação", auto_now_add=True)
     is_active = models.BooleanField("Ativo", default=True)
+    is_featured = models.BooleanField("Destaque na Home", default=False)
 
     class Meta:
         verbose_name = "Projeto"

@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'imgs/HJE2.ico' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -146,29 +148,81 @@
     </header>
 
     <section class="latest-news">
-        <h2>Projetos desenvolvidos por nossa equipe</h2>
+        <h2 style="text-align: center; margin-bottom: 40px; font-size: 3rem;">Nossos Projetos em Destaque</h2>
 
-        <div class="news-grid">
-            {% for project in projects %}
-                <div class="news-card">
-
-                    {% if project.image %}
-                        <img src="{{ project.image.url }}" alt="{{ project.title }}">
-                    {% endif %}
-
+        <div class="bento-grid">
+            {% for project in projects|slice:":3" %}
+            <div class="bento-card {% if forloop.first %}destaque{% endif %}" data-aos="fade-up">
+            
+                {% if project.image %}
+                    <div class="bento-bg" style="background-image: url('{{ project.image.url }}');"></div>
+                {% endif %}
+            
+                <div class="bento-content">
                     <h3>{{ project.title }}</h3>
-                    <p>{{ project.summary }}</p>
+                    <p>
+                        {% if forloop.first %}
+                            {{ project.summary|truncatechars:180 }}
+                        {% else %}
+                            {{ project.summary|truncatechars:60 }}
+                        {% endif %}
+                    </p>
+                
+                    <div style="display: flex; gap: 15px; align-items: center; margin-top: 15px;">
+    
+                        <button 
+                            onclick="openModal('{{ project.title|escapejs }}', '{{ project.summary|escapejs }}', '{% if project.image %}{{ project.image.url }}{% endif %}', '{{ project.link|default:'' }}')" 
+                            class="btn-arrow" 
+                            style="background: transparent; border: none; cursor: pointer; font-family: inherit; font-size: inherit; padding: 0; color: #4169e1; font-weight: bold; text-transform: uppercase;">
+                            Ler mais →
+                        </button>
 
-                    {% if project.link %}
-                        <a href="{{ project.link }}" target="_blank" class="read-more">
-                            Ver projeto
-                        </a>
-                    {% endif %}
+                        {% if project.link %}
+                            <a href="{{ project.link }}" target="_blank" title="Visitar site" style="color: white; font-size: 1.2rem; text-decoration: none; opacity: 0.8;">
+                                🔗
+                            </a>
+                        {% endif %}
+
+                    </div>
                 </div>
+            </div>
             {% empty %}
-                <p>Nenhum projeto cadastrado no momento.</p>
+                <p>Em breve novidades.</p>
             {% endfor %}
         </div>
+
+        {% if projects|length > 3 %}
+            <h2 style="text-align: center; margin: 60px 0 30px; font-size: 2.5rem;">Todos os Projetos</h2>
+        
+            <div class="projects-grid-uniforme">
+                {% for project in projects|slice:"3:" %} <div class="card-moderno" data-aos="fade-up">
+                    {% if project.image %}
+                        <div class="card-img-top" style="background-image: url('{{ project.image.url }}');"></div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.summary|truncatechars:100 }}</p>
+                            <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+    
+                                <button 
+                                    onclick="openModal('{{ project.title|escapejs }}', '{{ project.summary|escapejs }}', '{% if project.image %}{{ project.image.url }}{% endif %}', '{{ project.link|default:'' }}')" 
+                                    class="btn-outline" 
+                                    style="background: transparent; cursor: pointer; font-family: inherit; font-size: 14px; text-transform: uppercase;">
+                                    Ler sobre o projeto
+                                </button>
+
+                                {% if project.link %}
+                                    <a href="{{ project.link }}" target="_blank" title="Visitar site" style="color: #4169e1; font-size: 1.2rem; text-decoration: none;">
+                                        🔗
+                                    </a>
+                                {% endif %}
+
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </section>
 
     <footer class="footer">
@@ -182,11 +236,80 @@
             <a href="https://www.linkedin.com/company/einsteincoding/posts/?feedView=all" target="_blank">
                 <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn">
             </a>
+
+            <a href="https://github.com/Einstein-Coding-Projetos" target="_blank" aria-label="GitHub">
+                <img src="{% static 'imgs/github.svg' %}" alt="GitHub" style="filter: brightness(0) invert(1);"> 
+            </a>
         </div>
 
         <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP</p>
         <p>Email: einstein.coding@outlook.com</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 1000, /* Duração da animação em ms */
+        once: false,  /* Animação ocorre apenas uma vez ao rolar */
+        mirror: true, /* Animação repete ao rolar para cima */
+        disable: 'mobile' /* Desabilita animações em dispositivos móveis */
+    });
+    </script>
+
+    <div id="projectModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-glass">
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
+        
+            <div class="modal-header" id="modalImage"></div>
+        
+            <div class="modal-body">
+                <h2 id="modalTitle">Título do Projeto</h2>
+                <p id="modalDescription">Descrição do projeto aqui...</p>
+            
+                <a id="modalLink" href="#" target="_blank" class="modal-cta">
+                    Visitar Projeto ↗
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para ABRIR o modal e preencher os dados
+        function openModal(title, description, imageUrl, link) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = description;
+        
+            // Configura a imagem de fundo
+            const imgContainer = document.getElementById('modalImage');
+            if (imageUrl && imageUrl !== 'None') {
+                imgContainer.style.backgroundImage = "url('" + imageUrl + "')";
+                imgContainer.style.display = 'block';
+            } else {
+                imgContainer.style.display = 'none';
+            }
+
+            // Configura o botão do link
+            const btnLink = document.getElementById('modalLink');
+            if (link && link !== 'None' && link !== '') {
+                btnLink.href = link;
+                btnLink.style.display = 'inline-block';
+            } else {
+                btnLink.style.display = 'none';
+            }
+
+            // Mostra o modal
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Trava o scroll do fundo
+        }
+
+        // Função para FECHAR
+        function closeModal(event) {
+            // Só fecha se clicar no fundo escuro ou no X, não dentro do card
+            if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('close-btn')) {
+                document.getElementById('projectModal').classList.remove('active');
+                document.body.style.overflow = 'auto'; // Destrava o scroll
+            }
+        }
+</script>
 </body>
 </html>

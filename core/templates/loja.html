@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'imgs/HJE2.ico' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -144,7 +146,7 @@
 
     <section id="loja" class="produtos-a-venda" style="padding:20px 24px;">
         <div class="loja-container">
-            <h2 style="margin-bottom:12px;">Produtos</h2>
+            <h2 style="margin-bottom:12px;" data-aos="fade-in">Produtos</h2>
 
             <div class="product-grid">
                 {% for product in products %}
@@ -184,14 +186,14 @@
             <div style="max-width:1100px; margin:0 auto; display:flex; gap:5%; flex-wrap:wrap; width:100%;">
 
                 <div style="flex:1; min-width:240px;">
-                    <h3>Envio e Pagamento</h3>
-                    <p>Pagamentos via PIX. Nos contate para mais informações caso necessário.</p>
-                    <p>Chave PIX: thomazcomercial25@gmail.com</p>
+                    <h3 data-aos="fade-in">Envio e Pagamento</h3>
+                    <p data-aos="fade-right">Pagamentos via PIX. Nos contate para mais informações caso necessário.</p>
+                    <p data-aos="fade-right">Chave PIX: thomazcomercial25@gmail.com</p>
                 </div>
 
                 <div style="flex:1; min-width:240px;">
-                    <h3>Contato</h3>
-                    <p>Email: einstein.coding@outlook.com</p>
+                    <h3 data-aos="fade-in">Contato</h3>
+                    <p data-aos="fade-right">Email: einstein.coding@outlook.com</p>
                 </div>
             </div>
         </section>
@@ -207,10 +209,24 @@
                 <a href="https://www.linkedin.com/company/einsteincoding/" target="_blank">
                     <img src="{% static 'imgs/linkedin.svg' %}" alt="LinkedIn" style="width:28px; height:28px;">
                 </a>
+
+                <a href="https://github.com/Einstein-Coding-Projetos" target="_blank" aria-label="GitHub">
+                    <img src="{% static 'imgs/github.svg' %}" alt="GitHub" style="filter: brightness(0) invert(1);"> 
+                </a>
             </div>
 
             <p>Endereço: Av. Prof. Francisco Morato, 4293 - Butantã, São Paulo - SP, 05521-100</p>
         </footer>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        AOS.init({
+            duration: 2500, /* Duração da animação em ms */
+            once: false,  /* Animação ocorre apenas uma vez ao rolar */
+            mirror: true, /* Animação repete ao rolar para cima */
+            disable: 'mobile' /* Desabilita animações em dispositivos móveis */
+        });
+        </script>
 
 </body>
 </html>
