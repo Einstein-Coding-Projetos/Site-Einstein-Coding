@@ -8,14 +8,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&
+    family=Exo+2:wght@400;500;600;700&
+    family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'imgs/HJE2.ico' %}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="page-blue">
 
     <style>
         #mobile-header-overlay { display: none !important; }
@@ -147,7 +150,7 @@
         </nav>
     </header>
 
-    <section class="latest-news">
+    <section class="latest-news section-blue">
         <h2 style="text-align: center; margin-bottom: 40px; font-size: 3rem;">Nossos Projetos em Destaque</h2>
 
         <div class="bento-grid">
@@ -178,7 +181,7 @@
                         </button>
 
                         {% if project.link %}
-                            <a href="{{ project.link }}" target="_blank" title="Visitar site" style="color: white; font-size: 1.2rem; text-decoration: none; opacity: 0.8;">
+                            <a href="{{ project.link }}" target="_blank" title="Visitar site" style="color: rebeccapurple; font-size: 1.2rem; text-decoration: none; opacity: 0.8;">
                                 🔗
                             </a>
                         {% endif %}

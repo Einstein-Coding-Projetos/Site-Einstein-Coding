@@ -1,3 +1,83 @@
+:root {
+    /* Fundos */
+    --bg-white: #ffffff;
+    --bg-black: #0b0b0d;
+    --bg-blue-dark: #0e1a2b;
+
+    /* Texto */
+    --text-white: #ffffff;
+    --text-black: #111111;
+    --text-muted: #bfc6d1;
+
+    /* Destaques */
+    --accent-blue: #1f4fd8;
+    --accent-purple: #5b2dab;
+}
+
+/* =========================
+   SISTEMA TIPOGRÁFICO
+========================= */
+
+/* Texto padrão */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* TÍTULOS */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+h1, h2 {
+    text-transform: uppercase;
+}
+
+/* NAVBAR / BRAND */
+.navbar,
+.navbar a,
+.brand,
+.mob-links a {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+/* TEXTOS DE DESTAQUE */
+.intro-text,
+.hero p,
+.section-subtitle,
+.highlight-text {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 500;
+}
+
+/* BOTÕES */
+button,
+.btn,
+.btn-outline {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* =========================
+   BOTÃO PRETO
+========================= */
+
+.section-white .btn-outline {
+    color: #000;
+    border: 2px solid #000;
+}
+
+.section-white .btn-outline:hover {
+    background-color: #000;
+    color: #fff;
+}
+
 /* =========================
    RESET GLOBAL
 ========================= */
@@ -15,30 +95,6 @@ body {
     min-height: 100%;
 }
 
-html {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(110, 170, 235, 0.75),
-            rgba(170, 145, 215, 0.75)
-        ),
-        url("../imgs/logo-pattern.png");
-
-    background-repeat: repeat;
-    background-size: auto, 280px;
-    background-attachment: fixed;
-}
-
-body {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
-    color: white;
-    line-height: 1.6;
-
-    background: none !important;
-}
-
 /* =========================
     NAVBAR
 ========================= */
@@ -47,11 +103,8 @@ body {
     position: relative;
     z-index: 100;
 
-    background-color: transparent;
-    background-image: url("../imgs/background-pattern.png");
+    background-color: black;
     background-repeat: repeat;
-    background-size: 280px;
-
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -75,8 +128,8 @@ body {
 .navbar-links a {
     color: white;
     text-decoration: none;
-    font-family: 'Teko', sans-serif;
-    font-size: 23px; /* Fonte dos links maior */
+    font-family: 'Exo 2', sans-serif;
+    font-size: 16px; /* Fonte dos links maior */
     letter-spacing: 2px; /* Mais espaço entre as letras */
     text-transform: uppercase;
     font-weight: 400;
@@ -84,7 +137,7 @@ body {
 }
 
 .navbar-links a:hover {
-    color: #d1c4e9; /* Efeito leve ao passar o mouse */
+    color: rebeccapurple; /* Efeito leve ao passar o mouse */
 }
 
 .navbar-center {
@@ -94,8 +147,8 @@ body {
 .navbar-center .brand {
     color: white;
     text-decoration: none;
-    font-family: 'Teko', sans-serif;
-    font-size: 34px; /* Aumentei levemente o logo central */
+    font-family: 'Exo 2', sans-serif;
+    font-size: 23px; /* Aumentei levemente o logo central */
     line-height: 0.85; /* Ajuste para as duas linhas ficarem próximas e elegantes */
     letter-spacing: 3px;
     font-weight: 600;
@@ -103,21 +156,35 @@ body {
 }
 
 /* =========================
-    HERO / TOPO
+   HOME - HERO
 ========================= */
-.hero {
-    height: 90vh;
-    background-color: transparent; 
+.home-hero {
+    min-height: 100vh;
+    width: 100%;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url("../imgs/einstein.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     text-align: center;
+    color: var(--text-white);
 }
   
 .hero h1 {
-    font-family: 'Teko', sans-serif;
-    font-size: 90px; /* Teko é condensada, pode abusar do tamanho */
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 36px; 
     font-weight: 600;
     line-height: 0.9;
     text-transform: uppercase;
@@ -125,7 +192,7 @@ body {
 }
   
 .hero p {
-    font-size: 28px; /* Rajdhani precisa ser um pouco maior */
+    font-size: 36px; 
     margin-top: 10px;
     opacity: 0.9;
     font-weight: 400;
@@ -137,19 +204,60 @@ body {
 section {
     padding: 10px 15px;
 }
-  
+
+/* =========================
+   FUNDOS DE SEÇÃO
+========================= */
+
+.section-white {
+    background-color: var(--bg-white);
+    color: var(--text-black);
+}
+
+.section-black {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+}
+
+.section-blue {
+    background-color: var(--bg-blue-dark);
+    color: var(--text-white);
+}
+
+.section-padding {
+    padding: 5rem 2rem;
+}
+
 /* =========================
     TÍTULOS GERAIS
 ========================= */
 section h2 {
-    font-family: 'Teko', sans-serif;
-    font-size: 52px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 48px;
     margin-bottom: 15px;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-  
+
+.page-white {
+    background-color: var(--bg-white);
+    color: var(--text-black);
+    min-height: 100vh;
+}
+
+.page-black {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    min-height: 100vh;
+}
+
+.page-blue {
+    background-color: var(--bg-blue-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+}
+
 /* =========================
     GRID DE NOTÍCIAS
 ========================= */
@@ -170,7 +278,7 @@ section h2 {
 .news-card {
     background-color: royalblue;
     color: white;
-    border-radius: 8px; /* Bordas menos arredondadas combinam mais com Teko */
+    border-radius: 8px; 
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
@@ -191,7 +299,7 @@ section h2 {
   
 .news-card h3,
 .news-card h4 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     font-size: 32px; /* Títulos maiores */
     margin: 20px 20px 5px;
     font-weight: 500;
@@ -208,7 +316,7 @@ section h2 {
     margin: 0 20px 24px;
     text-decoration: none;
     color: royalblue;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     font-size: 20px;
     font-weight: 500;
     text-transform: uppercase;
@@ -259,7 +367,7 @@ section h2 {
 }
   
 .about h3 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 34px;
     font-weight: 400;
     letter-spacing: 1px;
@@ -373,7 +481,7 @@ section h2 {
 }
 
 .noticias-header h1 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     font-size: 64px;
     letter-spacing: 2px;
     margin-bottom: 10px;
@@ -449,7 +557,7 @@ section h2 {
 
 
 .card-noticia h3 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     margin: 6px 0;
     letter-spacing: 0.5px;
@@ -476,7 +584,7 @@ section h2 {
 }
 
 .noticias-header h1 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     font-size: 58px;
     letter-spacing: 2px;
 }
@@ -515,7 +623,7 @@ section h2 {
     border: none;
     background: #00bcd4;
     color: #111;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     cursor: pointer;
 }
@@ -550,7 +658,7 @@ section h2 {
 }
 
 .noticias-header h1 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 56px;          
     letter-spacing: 2.5px;
     margin-bottom: 10px;
@@ -558,7 +666,7 @@ section h2 {
 }
 
 .noticias-header p {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 26px;          
     letter-spacing: 1px;
     opacity: 0.95;
@@ -602,7 +710,7 @@ section h2 {
     background: linear-gradient(135deg, #00bcd4, #6a1b9a);
     color: lavender;
 
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     letter-spacing: 1px;
     cursor: pointer;
@@ -652,11 +760,11 @@ section h2 {
 
 /* Link estilizado como destaque */
 .link-destaque {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 22px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: white;
+    color: rebeccapurple;
     text-decoration: none;
     padding-bottom: 2px;
     border-bottom: 2px solid royalblue;
@@ -700,7 +808,7 @@ section h2 {
 
 
 .card h3 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 36px;
     font-weight: 400;
     letter-spacing: 1px;
@@ -725,7 +833,7 @@ section h2 {
 
 .card .btn {
     display: inline-block;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 22px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -817,7 +925,7 @@ section h2 {
 }
 
 .news-detail h1 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 48px;
     font-weight: 500;
     letter-spacing: 1.5px;
@@ -850,7 +958,7 @@ section h2 {
     margin-top: 32px;
     padding: 12px 22px;
 
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     letter-spacing: 1px;
 
@@ -872,7 +980,7 @@ section h2 {
     display: inline-block;
     margin-top: 30px;
 
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -937,10 +1045,12 @@ section h2 {
 
     /* --- Navbar --- */
     .navbar {
-        flex-direction: column;
-        padding: 15px;
-        height: auto; /* Remove altura fixa */
-    }
+        background: transparent;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }    
 
     .navbar-links {
         width: 100%;
@@ -991,6 +1101,7 @@ section h2 {
         padding: 40px 15px !important;
         width: 100%;
         box-sizing: border-box;
+        background: transparent !important;
     }
 
     .intro-text {
@@ -1058,7 +1169,7 @@ section h2 {
 }
 
 .product-card h3 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 26px;
     margin: 10px 0 6px;
 }
@@ -1078,7 +1189,7 @@ section h2 {
 
 .product-btn {
     align-self: flex-start;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1151,7 +1262,7 @@ section h2 {
     }
     
     .navbar-center .brand {
-        font-size: 26px;
+        font-size: 22px;
         display: block; /* Garante que ocupe a linha */
     }
 
@@ -1245,7 +1356,7 @@ section h2 {
 }
 
 .bento-content h3 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 32px;
     margin-bottom: 5px;
     color: #fff;
@@ -1333,7 +1444,7 @@ section h2 {
     font-size: 22px;
     color: #ffffff;
     margin-bottom: 10px;
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .card-body p {
@@ -1420,7 +1531,7 @@ section h2 {
 }
 
 .modal-body h2 {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 15px;
     line-height: 1;
@@ -1498,4 +1609,170 @@ section h2 {
 .hero-watermark .btn {
     position: relative;
     z-index: 1;
+}
+
+/* =========================
+   SISTEMA OFICIAL DE CARDS SÓLIDOS
+========================= */
+
+/* 1. Neutraliza QUALQUER vidro herdado */
+.card,
+.news-card,
+.project-card,
+.gestao-card,
+.caixa-de-compras,
+.card-noticia,
+.product-card {
+    background: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+}
+
+/* 2. Base sólida padrão */
+.card,
+.news-card,
+.project-card,
+.gestao-card,
+.caixa-de-compras,
+.card-noticia,
+.product-card {
+    position: relative;
+    background-color: var(--bg-white);
+    color: var(--text-black);
+
+    border-radius: 18px;
+    padding: 24px;
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* 3. Hover profissional */
+.card:hover,
+.news-card:hover,
+.project-card:hover,
+.gestao-card:hover,
+.caixa-de-compras:hover,
+.card-noticia:hover,
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+}
+
+/* 4. Seções escuras */
+.section-black .card,
+.section-black .news-card,
+.section-black .project-card,
+.section-black .gestao-card,
+.section-black .card-noticia,
+.section-black .product-card,
+.page-black .card,
+.page-black .news-card,
+.page-black .project-card,
+.page-black .gestao-card,
+.page-black .card-noticia,
+.page-black .product-card {
+    background-color: #121212;
+    color: var(--text-white);
+}
+
+/* 5. Seções azuis */
+.section-blue .card,
+.section-blue .news-card,
+.section-blue .project-card,
+.section-blue .gestao-card,
+.section-blue .card-noticia,
+.section-blue .product-card,
+.page-blue .card,
+.page-blue .news-card,
+.page-blue .project-card,
+.page-blue .gestao-card,
+.page-blue .card-noticia,
+.page-blue .product-card {
+    background-color: #15243b;
+    color: var(--text-white);
+}
+
+/* 6. Botões herdam contraste correto */
+.card a,
+.news-card a,
+.project-card a {
+    color: currentColor;
+}
+
+/* =========================
+   REMOÇÃO DE BLOCOS SÓLIDOS NA HOME
+========================= */
+
+.home-section,
+.about,
+.projects,
+.news,
+.section-content {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+.section-white h1,
+.section-white h2,
+.section-white h3,
+.section-white p,
+.section-blue h1,
+.section-blue h2,
+.section-white h3,
+.section-blue p,
+.section-black h1,
+.section-black h2,
+.section-white h3,
+.section-black p {
+    color: inherit;
+}
+
+.section-padding {
+    padding: 6rem 8vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.align-center {
+    align-items: center;
+    text-align: center;
+}
+
+.align-left {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.align-right {
+    align-items: flex-end;
+    text-align: right;
+}
+
+/* =========================
+   FUNDOS DE SEÇÃO (OFICIAL)
+========================= */
+
+.section-white {
+    background-color: #ffffff;
+    color: #0a0a0a;
+}
+
+.section-black {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.section-blue {
+    background-color: #0b1c2d;
+    color: #ffffff;
 }

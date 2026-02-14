@@ -7,18 +7,18 @@ def home(request):
     recent_projects = Project.objects.filter(is_active=True).order_by('-is_featured', '-created_at')[:3]
     featured_news = News.objects.filter(is_featured=True).order_by('-created_at')[:3]
 
-    # Se quiser passar os cards da Healthcare também (mesmo que não exiba no layout "breve"), 
-    # eles estão disponíveis aqui:
-    healthcare_cards = HealthcareJuniorCard.objects.filter(is_active=True)
-
     return render(request, 'home.html', {
         'recent_projects': recent_projects,
         'featured_news': featured_news,
-        'healthcare_cards': healthcare_cards 
     })
 
 def sobre_nos(request):
-    return render(request, 'sobre_nos.html')
+    # Se quiser passar os cards da Healthcare também (mesmo que não exiba no layout "breve"), 
+    # eles estão disponíveis aqui:
+    healthcare_cards = HealthcareJuniorCard.objects.filter(is_active=True)
+    return render(request, 'sobre_nos.html', {
+        'healthcare_cards': healthcare_cards,
+    })
 
 def servicos(request):
     return render(request, 'servicos.html')

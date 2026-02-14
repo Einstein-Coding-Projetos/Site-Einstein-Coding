@@ -7,12 +7,16 @@
     <title>Sobre Nós - HJE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&
+    family=Exo+2:wght@400;500;600;700&
+    family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'imgs/HJE2.ico' %}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body>
+<body class="page-black">
 
     <style>
         #mobile-header-overlay { display: none !important; }
@@ -133,12 +137,12 @@
         <nav class="navbar-links right"><a href="/codigo-social/">Código Social</a><a href="/noticias/">Notícias</a><a href="/gestao/">Gestão</a></nav>
     </header>
 
-    <section class="hero" style="height: 40vh; min-height: 300px;">
+    <section class="hero section-black" style="height: 40vh; min-height: 300px;">
         <h1>Quem Somos</h1>
         <p>Nossa história, missão e valores</p>
     </section>
 
-    <section class="about">
+    <section class="about section-black section-padding">
         <h2>A Healthtech Júnior Einstein</h2>
 
         <p class="intro-text">
@@ -198,7 +202,7 @@
         </div>
     </section>
 
-    <section class="about" style="margin-top: 30px;">
+    <section class="about section-black section-padding">
         <h2>O Código Social</h2>
         <p class="intro-text">
             O Código Social é o pilar filantrópico da HJE. Entendemos que a tecnologia é uma ferramenta poderosa de ascensão social e profissional.
@@ -206,6 +210,41 @@
         <p class="intro-text">
             Através deste projeto voluntário, oferecemos aulas de lógica de programação, Python e desenvolvimento web para jovens em situação de vulnerabilidade socioeconômica, abrindo portas para o mercado de tecnologia.
         </p>
+    </section>
+
+    <section class="section-black">
+        <div class="section-inner align-left">
+            <h2  data-aos="fade-in">Faça Parte do Time</h2>
+            <p class="intro-text"  data-aos="fade-left">
+                Quer colocar a mão na massa em projetos reais ou liderar iniciativas de Marketing e RH?
+                Acompanhe nossos processos seletivos.
+            </p>
+
+            <div class="cards-grid">
+                {% for card in healthcare_cards %}
+                    <div class="card" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.3);">
+        
+                        <h3 style="color: #ffffff; font-family: 'Teko', sans-serif; font-size: 1.8rem;">{{ card.title }}</h3>
+                        <p style="margin: 15px 0;">{{ card.description }}</p>
+        
+                        {% if card.status == 'aberto' and card.form_link %}
+                            <a href="{{ card.form_link }}" target="_blank" class="btn" style="background-color: #ffffff; color: #00A859; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 10px; font-weight: bold;">
+                                Inscreva-se Agora
+                            </a>
+                        {% else %}
+                            <div class="status" style="margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 5px; display: inline-block;">
+                                <span style="color: #aaa;">Status: Fechado</span><br>
+                                {% if card.opening_date %}
+                                    <span style="color: #ffffff; font-weight: bold;">Próxima abertura: {{ card.opening_date }}</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+        
+                    </div>
+                {% empty %}
+                    <p>Nenhum processo seletivo visível no momento.</p>
+                {% endfor %}
+            </div>
     </section>
 
      <footer class="footer">
